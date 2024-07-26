@@ -4,13 +4,13 @@ Feature: UserStory5.Personal Information
   borrower's details (if applicable) so that I can move forward with the
   mortgage application process.
   Background:
-    Given the user is on the login page
-    Given the user filled out Preapproval Page
+    Given the user has completed the Preapproval Details page
+
 
 @UserStory5
-  Scenario:  User logs in and fills out personal information
+  Scenario:  User select Co-Borrower Yes-Checkbox
 
     When the user sees the "Are you applying with a co-borrower?" field
-    And the user selects the "Yes" checkbox
-    Then the "Yes" checkbox should be checked
-    And the "No" checkbox should not be checked
+    And the user selects the Yes checkbox
+    Then the Yes checkbox should be checked
+    And the No checkbox should not be checked
