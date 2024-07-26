@@ -6,9 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
 @Data
-public class PreapprovalDetailsPageUS5 {
-
-    public PreapprovalDetailsPageUS5(){
+public class PreapprovalProcessPageUS5 {
+    public PreapprovalProcessPageUS5(){
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
@@ -45,7 +44,7 @@ public class PreapprovalDetailsPageUS5 {
     @FindBy(name = "add_fund_available")
     private WebElement addtFundsField;
 
-    @FindBy(linkText = "#next")
+    @FindBy(linkText = "Next")
     private WebElement nextButton;
 
 }

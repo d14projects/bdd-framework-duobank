@@ -15,7 +15,7 @@ import org.junit.runner.RunWith;
 //            }
 //          , publish = true  // generates a web based report with link on the console
 //          , stepNotifications = true
-          , dryRun = true   // dry runs the scenario for snippet generation
+        //  , dryRun = true   // dry runs the scenario for snippet generation
 )
 @RunWith(Cucumber.class)
 public class CucumberRunner {
