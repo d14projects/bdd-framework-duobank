@@ -19,6 +19,7 @@ public class SignUpStepDefs {
     public void the_user_clicks_sign_up_link() {
         new SignUpPage().getSignUpLink().click();
     }
+
     @When("enters firstName, lastName, emailAddress, password")
     public void enters_first_name_last_name_email_address_password() {
      new SignUpPage().createNewUser();
