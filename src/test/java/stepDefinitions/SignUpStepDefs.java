@@ -1,9 +1,10 @@
 package stepDefinitions;
 
+import com.github.javafaker.Faker;
 import io.cucumber.java.en.*;
 import org.junit.Assert;
 import org.openqa.selenium.Keys;
-import pages.SignUpPage;
+import pages.SignUpPageUS1;
 import utilities.ConfigReader;
 import utilities.Driver;
 import utilities.FrameworkConstants;
@@ -25,25 +26,15 @@ public class SignUpStepDefs {
 
     @When("the user clicks sign up link")
     public void the_user_clicks_sign_up_link() {
-        new SignUpPage().getSignUpLink().click();
-    }
-
-    @When("enters firstName, lastName, emailAddress, password")
-    public void enters_first_name_last_name_email_address_password() {
-        new SignUpPage().createNewUser();
-    }
-
-    @Then("the user should see Registration Successful message")
-    public void the_user_should_see_registration_successful_message() {
-        Assert.assertTrue(Driver.getDriver().getPageSource().contains("Registration Successful"));
+        new SignUpPageUS1().getSignUpLink().click();
     }
 
     @Then("the user should see First Name, Last Name, Email Address, and Password fields")
     public void the_user_should_see_first_name_last_name_email_address_and_password_fields() {
-        Assert.assertTrue(new SignUpPage().getFirstNameField().isDisplayed());
-        Assert.assertTrue(new SignUpPage().getLastNameField().isDisplayed());
-        Assert.assertTrue(new SignUpPage().getEmailField().isDisplayed());
-        Assert.assertTrue(new SignUpPage().getPasswordField().isDisplayed());
+        Assert.assertTrue(new SignUpPageUS1().getFirstNameField().isDisplayed());
+        Assert.assertTrue(new SignUpPageUS1().getLastNameField().isDisplayed());
+        Assert.assertTrue(new SignUpPageUS1().getEmailField().isDisplayed());
+        Assert.assertTrue(new SignUpPageUS1().getPasswordField().isDisplayed());
     }
 
 
@@ -87,14 +78,14 @@ public class SignUpStepDefs {
             switch (field) {
                 case "firstName":
                     for (String value : firstName) {
-                        new SignUpPage().getFirstNameField().clear();
-                        new SignUpPage().getFirstNameField().sendKeys(value, Keys.TAB);
+                        new SignUpPageUS1().getFirstNameField().clear();
+                        new SignUpPageUS1().getFirstNameField().sendKeys(value, Keys.TAB);
 
                         isRequiredExpected = Boolean.parseBoolean(row.get("required"));
                         hasLetterAndSpaceExpected = Boolean.parseBoolean(row.get("hasLetterAndSpace"));
                         maxLengthExpected = Integer.parseInt(row.get("maxLength"));
 
-                        input = new SignUpPage().getFirstNameField().getAttribute("value");
+                        input = new SignUpPageUS1().getFirstNameField().getAttribute("value");
                         count++;
 
                         Assert.assertTrue(isRequiredExpected && !input.isEmpty());
@@ -109,14 +100,14 @@ public class SignUpStepDefs {
 
                 case "lastName":
                     for (String value : lastName) {
-                        new SignUpPage().getLastNameField().clear();
-                        new SignUpPage().getLastNameField().sendKeys(value, Keys.TAB);
+                        new SignUpPageUS1().getLastNameField().clear();
+                        new SignUpPageUS1().getLastNameField().sendKeys(value, Keys.TAB);
 
                         isRequiredExpected = Boolean.parseBoolean(row.get("required"));
                         hasLetterAndSpaceExpected = Boolean.parseBoolean(row.get("hasLetterAndSpace"));
                         maxLengthExpected = Integer.parseInt(row.get("maxLength"));
 
-                        input = new SignUpPage().getLastNameField().getAttribute("value");
+                        input = new SignUpPageUS1().getLastNameField().getAttribute("value");
                         count++;
 
                         Assert.assertTrue(isRequiredExpected && !input.isEmpty());
@@ -131,8 +122,8 @@ public class SignUpStepDefs {
 
                 case "email":
                     for (String value : email) {
-                        new SignUpPage().getEmailField().clear();
-                        new SignUpPage().getEmailField().sendKeys(value, Keys.TAB);
+                        new SignUpPageUS1().getEmailField().clear();
+                        new SignUpPageUS1().getEmailField().sendKeys(value, Keys.TAB);
                         SeleniumUtils.waitFor(1);
 
                         isRequiredExpected = Boolean.parseBoolean(row.get("required"));
@@ -141,14 +132,14 @@ public class SignUpStepDefs {
                         formatExpected = row.get("format");
                         formatExpected = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
 
-                        input = new SignUpPage().getEmailField().getAttribute("value");
+                        input = new SignUpPageUS1().getEmailField().getAttribute("value");
                         count++;
 
                         Assert.assertTrue(isRequiredExpected && !input.isEmpty());
                         Assert.assertTrue(input.matches(formatExpected));
                         Assert.assertTrue(input.length() <= maxLengthExpected);
 
-                        boolean duplicateActual = !new SignUpPage().getEmailError().getText().contains("This email already used");
+                        boolean duplicateActual = !new SignUpPageUS1().getEmailError().getText().contains("This email already used");
                         Assert.assertEquals(isDuplicateExpected, duplicateActual);
                     }
                     System.out.println("Quantity of email options checked: " + count);
@@ -156,8 +147,8 @@ public class SignUpStepDefs {
 
                 case "password":
                     for (String value : password) {
-                        new SignUpPage().getPasswordField().clear();
-                        new SignUpPage().getPasswordField().sendKeys(value, Keys.TAB);
+                        new SignUpPageUS1().getPasswordField().clear();
+                        new SignUpPageUS1().getPasswordField().sendKeys(value, Keys.TAB);
 
                         isRequiredExpected = Boolean.parseBoolean(row.get("required"));
                         maxLengthExpected = Integer.parseInt(row.get("maxLength"));
@@ -166,7 +157,7 @@ public class SignUpStepDefs {
                         hasLowercaseExpected = Boolean.parseBoolean(row.get("hasLowercase"));
                         hasNumberExpected = Boolean.parseBoolean(row.get("hasNumber"));
 
-                        input = new SignUpPage().getPasswordField().getAttribute("value");
+                        input = new SignUpPageUS1().getPasswordField().getAttribute("value");
                         count++;
 
                         Assert.assertTrue(isRequiredExpected && !input.isEmpty());
@@ -189,6 +180,97 @@ public class SignUpStepDefs {
             }
         }
     }
+
+    @When("the user clicks Sign Up button after filling some of the required fields")
+    public void the_user_clicks_sign_up_button_after_filling_out_required_field_s(List<Map<String, String>> dataTable) {
+
+        for (Map<String, String> row : dataTable) {
+            String field = row.get("field");
+
+            new SignUpPageUS1().getFirstNameField().clear();
+            new SignUpPageUS1().getLastNameField().clear();
+            new SignUpPageUS1().getEmailField().clear();
+            new SignUpPageUS1().getPasswordField().clear();
+
+            switch (field) {
+                case "0":
+                    break;
+                case "1":
+                    new SignUpPageUS1().getFirstNameField().sendKeys(new Faker().name().firstName());
+                    break;
+                case "2":
+                    new SignUpPageUS1().getFirstNameField().sendKeys(new Faker().name().firstName());
+                    new SignUpPageUS1().getLastNameField().sendKeys(new Faker().name().lastName());
+                    break;
+                case "3":
+                    new SignUpPageUS1().getFirstNameField().sendKeys(new Faker().name().firstName());
+                    new SignUpPageUS1().getLastNameField().sendKeys(new Faker().name().lastName());
+                    new SignUpPageUS1().getEmailField().sendKeys(new Faker().internet().emailAddress());
+                    break;
+            }
+            new SignUpPageUS1().getRegisterButton().click();
+            SeleniumUtils.waitFor(3);
+        }
+    }
+
+    @Then("Sign up button should be non-functional and user should remain on the Sign Up page")
+    public void sign_up_button_should_be_non_functional() {
+        String expectedPageTitle = new SignUpPageUS1().getSignUpPageTitle();
+        String actualPageTitle = Driver.getDriver().getTitle();
+        Assert.assertEquals(expectedPageTitle, actualPageTitle);
+    }
+
+    @Then("the user clicks Sign Up button by filling all required input fields")
+    public void the_user_clicks_sign_up_button_by_filling_all_required_input_fields() {
+        new SignUpPageUS1().fillAllFields();
+        new SignUpPageUS1().getRegisterButton().click();
+    }
+
+    @Then("the user should see Registration Successful message and be redirected to the Sign In Page")
+    public void the_user_should_see_registration_successful_message() {
+        Assert.assertTrue(Driver.getDriver().getPageSource().contains("Registration Successful"));
+        SeleniumUtils.waitFor(3);
+
+        String expectedPageTitle = new SignUpPageUS1().getSignInPageTitle();
+        String actualPageTitle = Driver.getDriver().getTitle();
+        Assert.assertEquals(expectedPageTitle, actualPageTitle);
+    }
+
+    @When("the user enters an email address that is already associated with an existing account")
+    public void the_user_enters_an_email_address_that_is_already_associated_with_an_existing_account() {
+        new SignUpPageUS1().getEmailField().sendKeys("jglob13@gmail.com", Keys.TAB);
+        SeleniumUtils.waitFor(2);
+    }
+    @Then("an error message “This email already used” should be displayed.")
+    public void an_error_message_this_email_already_used_should_be_displayed() {
+        Assert.assertTrue(new SignUpPageUS1().getEmailError().getText().contains("This email already used"));
+    }
+
+
+    @When("the user confirms \"Already have an account? Sign in\" link is displayed")
+    public void the_user_confirms_already_have_an_account_sign_in_link_is_displayed() {
+
+        String expectedLinkText = "Already have an account?Sign in"; // fix the space on the webpage
+        String actualLinkText = new SignUpPageUS1().getAlreadyHaveAccountField().getText();
+
+        Assert.assertEquals(expectedLinkText, actualLinkText);
+        Assert.assertTrue(new SignUpPageUS1().getAlreadyHaveAccountField().isDisplayed());
+    }
+
+    @When("the user clicks on \"Already have an account? Sign in\" link")
+    public void the_user_clicks_on_already_have_an_account_sign_in_link() {
+        new SignUpPageUS1().getAlreadyHaveAccountLink().click();
+    }
+    @Then("the user should be redirected to the Sign In Page")
+    public void the_user_should_be_redirected_to_the_sign_in_page() {
+
+        String expectedPageTitle = new SignUpPageUS1().getSignInPageTitle();
+        String actualPageTitle = Driver.getDriver().getTitle();
+        Assert.assertEquals(expectedPageTitle, actualPageTitle);
+    }
+
+
+
 }
 
 
