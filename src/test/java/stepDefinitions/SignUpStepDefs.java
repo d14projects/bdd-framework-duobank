@@ -238,7 +238,8 @@ public class SignUpStepDefs {
 
     @When("the user enters an email address that is already associated with an existing account")
     public void the_user_enters_an_email_address_that_is_already_associated_with_an_existing_account() {
-        new SignUpPageUS1().getEmailField().sendKeys("jglob14@gmail.com", Keys.TAB);
+        new SignUpPageUS1().getEmailField().sendKeys("jglob13@gmail.com", Keys.TAB);
+        SeleniumUtils.waitFor(2);
     }
     @Then("an error message “This email already used” should be displayed.")
     public void an_error_message_this_email_already_used_should_be_displayed() {
