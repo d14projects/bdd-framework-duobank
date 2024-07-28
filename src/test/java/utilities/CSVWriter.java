@@ -19,7 +19,7 @@ public class CSVWriter {
             for (int i = 0; i < quantity; i++) {
                 Faker faker = new Faker();
                 email.add(faker.internet().emailAddress());
-                password.add(faker.internet().password(8, 10, true, false, true));
+                password.add(faker.internet().password(10, 20, true, false, true));
                 bw.write(faker.name().firstName());
                 bw.write(",");
                 bw.write(faker.name().lastName());
