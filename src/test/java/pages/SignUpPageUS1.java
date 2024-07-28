@@ -45,6 +45,11 @@ public class SignUpPageUS1 {
 private String signInPageTitle = "Login - Duobank URLA (Uniform Residential Loan Application) Mortgage Application";
 private String signUpPageTitle = "Register - Create an Account";
 
+    @FindBy (xpath = "//small [.='Already have an account?']//parent::div")
+    private WebElement alreadyHaveAccountField;
+
+    @FindBy (xpath = "//div[@class='text-center']//a")
+    private WebElement alreadyHaveAccountLink;
 
 
 

@@ -226,7 +226,7 @@ public class SignUpStepDefs {
         new SignUpPageUS1().getRegisterButton().click();
     }
 
-    @Then("the user should see Registration Successful message and be redirected to Sign In Page")
+    @Then("the user should see Registration Successful message and be redirected to the Sign In Page")
     public void the_user_should_see_registration_successful_message() {
         Assert.assertTrue(Driver.getDriver().getPageSource().contains("Registration Successful"));
         SeleniumUtils.waitFor(3);
@@ -234,8 +234,42 @@ public class SignUpStepDefs {
         String expectedPageTitle = new SignUpPageUS1().getSignInPageTitle();
         String actualPageTitle = Driver.getDriver().getTitle();
         Assert.assertEquals(expectedPageTitle, actualPageTitle);
-
     }
+
+    @When("the user enters an email address that is already associated with an existing account")
+    public void the_user_enters_an_email_address_that_is_already_associated_with_an_existing_account() {
+        new SignUpPageUS1().getEmailField().sendKeys("jglob14@gmail.com", Keys.TAB);
+    }
+    @Then("an error message “This email already used” should be displayed.")
+    public void an_error_message_this_email_already_used_should_be_displayed() {
+        Assert.assertTrue(new SignUpPageUS1().getEmailError().getText().contains("This email already used"));
+    }
+
+
+    @When("the user confirms \"Already have an account? Sign in\" link is displayed")
+    public void the_user_confirms_already_have_an_account_sign_in_link_is_displayed() {
+
+        String expectedLinkText = "Already have an account?Sign in"; // fix the space on the webpage
+        String actualLinkText = new SignUpPageUS1().getAlreadyHaveAccountField().getText();
+
+        Assert.assertEquals(expectedLinkText, actualLinkText);
+        Assert.assertTrue(new SignUpPageUS1().getAlreadyHaveAccountField().isDisplayed());
+    }
+
+    @When("the user clicks on \"Already have an account? Sign in\" link")
+    public void the_user_clicks_on_already_have_an_account_sign_in_link() {
+        new SignUpPageUS1().getAlreadyHaveAccountLink().click();
+    }
+    @Then("the user should be redirected to the Sign In Page")
+    public void the_user_should_be_redirected_to_the_sign_in_page() {
+
+        String expectedPageTitle = new SignUpPageUS1().getSignInPageTitle();
+        String actualPageTitle = Driver.getDriver().getTitle();
+        Assert.assertEquals(expectedPageTitle, actualPageTitle);
+    }
+
+
+
 }
 
 
