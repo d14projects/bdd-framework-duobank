@@ -8,9 +8,9 @@ import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
 
 @Data
-public class SignUpPage {
+public class SignUpPageUS1 {
 
-    public SignUpPage(){
+    public SignUpPageUS1(){
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
@@ -35,15 +35,15 @@ public class SignUpPage {
     @FindBy (id = "emailerror")
     private WebElement emailError;
 
-    public void createNewUser(){
+    public void fillAllFields(){
         firstNameField.sendKeys(new Faker().name().firstName());
         lastNameField.sendKeys(new Faker().name().lastName());
         emailField.sendKeys(new Faker().internet().emailAddress());
         passwordField.sendKeys(new Faker().internet().password(8, 10, true, false, true));
-        registerButton.click();
     }
 
-
+private String signInPageTitle = "Login - Duobank URLA (Uniform Residential Loan Application) Mortgage Application";
+private String signUpPageTitle = "Register - Create an Account";
 
 
 
