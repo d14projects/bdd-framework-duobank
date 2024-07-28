@@ -12,7 +12,7 @@ Feature: User Story 1. Duobank App Sign Up
     And enters firstName, lastName, emailAddress, password
     Then the user should see Registration Successful message
 
-
+  @signup
   Scenario: The Sign Up page should include input fields for
   the user's First Name, Last Name, Email Address, and Password.
 
@@ -20,17 +20,16 @@ Feature: User Story 1. Duobank App Sign Up
 
   @signup
   Scenario Outline: All input fields should have clear labels and validation rules as follows
-    And the user enters info on the "<field>" field
-    Then the entered info should meet the following conditions
-      | field   | required   | hasLetterAndSpace | maxLength   | minLength   | isDuplicate | hasUppercase | hasLowercase | hasNumber |
-      | <field> | <required> | <letterAndSpace>  | <maxLength> | <minLength> | <duplicate> | <upp>        | <low>        | <num>     |
+    Then the info entered on the field should meet the following conditions
+      | field   | required   | hasLetterAndSpace | maxLength   | minLength   | isDuplicate | hasUppercase | hasLowercase | hasNumber | format   |
+      | <field> | <required> | <letterAndSpace>  | <maxLength> | <minLength> | <duplicate> | <upp>        | <low>        | <num>     | <format> |
 
     Examples:
 
-      | field     | required | letterAndSpace | maxLength | minLength | duplicate | upp   | low   | num   |
-      | firstName | true     | true           | 50        | 0         | false     | false | false | false |
-      | lastName  | true     | true           | 50        | 0         | false     | false | false | false |
-      | email     | true     | false          | 255       | 0         | true      | false | false | false |
-      | password  | true     | false          | 50        | 8         | false     | true  | true  | true  |
+      | field     | required | letterAndSpace | maxLength | minLength | duplicate | upp  | low  | num  | format              |
+      | firstName | true     | true           | 50        |           |           |      |      |      |                     |
+      | lastName  | true     | true           | 50        |           |           |      |      |      |                     |
+      | email     | true     |                | 255       |           | true      |      |      |      | example@example.com |
+      | password  | true     |                | 50        | 8         |           | true | true | true |                     |
 
 
