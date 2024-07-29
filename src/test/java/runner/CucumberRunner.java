@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 
 
 @CucumberOptions(
-         tags = "@navigation2",
+         tags = "",
             features = "src/test/resources",
             glue = "stepDefinitions"
       //   plugin = {
