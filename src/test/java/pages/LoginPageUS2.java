@@ -14,7 +14,7 @@ public class LoginPageUS2 {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
-    @FindBy(id = "LoginPage")
+    @FindBy(id = "exampleInputEmail1")
     private WebElement emailField;
 
     @FindBy(id = "exampleInputPassword1")
@@ -23,9 +23,12 @@ public class LoginPageUS2 {
     @FindBy(name = "login")
     private WebElement signInButton;
 
+private String emailAddress = "jglob@gmail.com";
+private String passwordValid = "Password1";
 
     public void login(){
-        emailField.sendKeys("jglob@gmail.com", Keys.TAB, "Password1");
+        emailField.sendKeys(emailAddress);
+        passwordField.sendKeys(passwordValid);
         signInButton.click();
     }
 

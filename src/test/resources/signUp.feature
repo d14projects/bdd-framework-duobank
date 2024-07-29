@@ -5,7 +5,7 @@ Feature: User Story 1. Duobank App Sign Up
   so that I can start the process of applying for a mortgage.
 
   Background:
-    Given the user is on the login page
+    Given the user navigates to the sign in page
     When the user clicks sign up link
 
 #  @signup
