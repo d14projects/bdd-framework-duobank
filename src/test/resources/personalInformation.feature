@@ -21,3 +21,4 @@ Feature: UserStory5.Personal Information
     And the user does not fill out fields and only click Next button
     Then the First name, Last name, Email, Date of Birth, SSN,Marital status, and cell phone fields should display a requirement message
     And the requirement message color should be in red "rgba(71, 95, 123, 1)"
+
