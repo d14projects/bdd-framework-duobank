@@ -1,9 +1,7 @@
 package stepDefinitions;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
-import io.cucumber.java.BeforeAll;
-import io.cucumber.java.Scenario;
+import io.cucumber.java.*;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -18,38 +16,30 @@ import java.time.Duration;
 
 public class Hooks {
 
-    @Before ("@signup")
-    public void setUpSignUp(){
+    @BeforeAll
+    public static void setUpSignUp(){
 
         CSVWriter.writeSignUpDataToFile(
                 FrameworkConstants.SIGNUP_FILE,
                 FrameworkConstants.VALID_LOGIN_FILE,
-                2);
+                10);
         CSVWriter.writeInvalidLoginDataToFile(FrameworkConstants.INVALID_LOGIN_FILE, 2);
-        Driver.getDriver().manage().window().maximize();
-        Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 
-    @After ("@signup")
-    public void tearDownSignUp(Scenario scenario) {
-            CSVEraser.deleteFile(FrameworkConstants.SIGNUP_FILE);
+    @AfterAll
+    public static void tearDownSignUp() {
+//            CSVEraser.deleteFile(FrameworkConstants.SIGNUP_FILE);
             CSVEraser.deleteFile(FrameworkConstants.VALID_LOGIN_FILE);
             CSVEraser.deleteFile(FrameworkConstants.INVALID_LOGIN_FILE);
-        if (scenario.isFailed()){
-            byte [] screenshotFile =  ( (TakesScreenshot) Driver.getDriver() ).getScreenshotAs(OutputType.BYTES);
-            scenario.attach(screenshotFile, "image/png", "failed");
-        }
-
-        Driver.quitDriver();
     }
 
-    @Before ("not @signup")
+    @Before
     public void setupScenario(){
         Driver.getDriver().manage().window().maximize();
         Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 
-    @After ("not @signup")
+    @After
     public void tearDownScenario(Scenario scenario){
 
         if (scenario.isFailed()){
