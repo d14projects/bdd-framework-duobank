@@ -1,4 +1,4 @@
-@REGRESSION
+@REGRESSION @login
 Feature: Duobank App Sign In
   As a user,
   I want to be able to sign in to my mortgage account,
@@ -25,12 +25,35 @@ Feature: Duobank App Sign In
   When the user enters email address to the email field
   Then the email should be in a valid email address format e.g. example@example.com
 
-  @login
+#  @login not working for masked
   Scenario: The password field should be masked and not show the entered characters
   When the user enters password to the password field
   Then the password field should be masked and not show entered characters
 
 #  @login
-  Scenario: User sign in to the mortgage account dashboard
+  Scenario: The Sign In button should be disabled when some of the required fields are filled with valid values
+    When the user clicks Sign In button after filling some or none of the required fields
+      | field        |
+      | none         |
+      | onlyEmail    |
+      | onlyPassword |
+    Then Sign in button should be disabled and user should remain on the Sign In page
+
+#  @login
+  Scenario: The Sign In button should be disabled until both email address and password fields are filled with valid values
+    When the user clicks Sign In button by filling both email and password fields
+    Then the user is redirected to the mortgage account dashboard
+
+#  @login
+  Scenario: User unsuccessful sign in to the mortgage account dashboard
+    When the user enters incorrect credentials and clicks Sign In button
+      | field                            |
+      | IncorrectEmail-IncorrectPassword |
+      | CorrectEmail-IncorrectPassword   |
+      | IncorrectEmail-CorrectPassword   |
+    Then the user should see error message "Login Failed" indicating email or password are incorrect
+
+#  @login
+  Scenario: User successful sign in to the mortgage account dashboard
   When the user enters correct credentials and clicks Sign In button
   Then the user is redirected to the mortgage account dashboard

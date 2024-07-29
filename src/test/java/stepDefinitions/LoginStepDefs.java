@@ -2,32 +2,19 @@ package stepDefinitions;
 
 import com.github.javafaker.Faker;
 import io.cucumber.java.en.*;
-import io.cucumber.java.eo.Se;
-import lombok.Data;
 import org.junit.Assert;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.interactions.SourceType;
+import org.openqa.selenium.WebElement;
 import pages.LoginPageUS2;
 import pages.SignUpPageUS1;
 import utilities.ConfigReader;
 import utilities.Driver;
-import utilities.FrameworkConstants;
 import utilities.SeleniumUtils;
 
-import java.awt.*;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.Transferable;
-import java.awt.datatransfer.UnsupportedFlavorException;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 public class LoginStepDefs {
 
@@ -52,7 +39,7 @@ public class LoginStepDefs {
             new LoginPageUS2().getPasswordField().clear();
 
             switch (option) {
-                case 1 -> new LoginPageUS2().getEmailField().sendKeys(new LoginPageUS2().getEmailAddress());
+                case 1 -> new LoginPageUS2().getEmailField().sendKeys(new LoginPageUS2().getEmailValid());
                 case 2 -> new LoginPageUS2().getPasswordField().sendKeys(new LoginPageUS2().getPasswordValid());
                 case 3 -> {
                     new LoginPageUS2().getEmailField().sendKeys("");
@@ -86,14 +73,14 @@ public class LoginStepDefs {
     @When("the user enters password to the password field")
     public void the_user_enters_password_to_the_password_field() {
         new LoginPageUS2().getPasswordField().sendKeys("Password1");
-      //  new LoginPageUS2().getEmailField().sendKeys(" ");
+        //  new LoginPageUS2().getEmailField().sendKeys(" ");
     }
 
     @Then("the password field should be masked and not show entered characters")
     public void the_password_field_should_be_masked_and_not_show_entered_characters() {
 
         String testPassword = "Password1";
-        System.out.println("Test password: " + testPassword );
+        System.out.println("Test password: " + testPassword);
 
         String actualPassword = new LoginPageUS2().getPasswordField().getAttribute("value");
         System.out.println("Masked Text: " + actualPassword);
@@ -111,9 +98,111 @@ public class LoginStepDefs {
 //                + SeleniumUtils.copyAndGetClipboardText(Driver.getDriver(), new LoginPageUS2().getEmailField()) );
 
         System.out.println("Password Field Clipboard: "
-                + SeleniumUtils.copyAndGetClipboardText(Driver.getDriver(), new LoginPageUS2().getPasswordField()) );
+                + SeleniumUtils.copyAndGetClipboardText(Driver.getDriver(), new LoginPageUS2().getPasswordField()));
+    }
 
 
+    @When("the user clicks Sign In button after filling some or none of the required fields")
+    public void the_user_clicks_sign_in_button_after_filling_some_or_none_of_the_required_fields(List<Map<String, String>> dataTable) {
+        for (Map<String, String> row : dataTable) {
+            String field = row.get("field");
+
+            new LoginPageUS2().getEmailField().clear();
+            new LoginPageUS2().getPasswordField().clear();
+
+            switch (field) {
+                case "none" -> {
+                }
+                case "onlyEmail" -> new LoginPageUS2().getEmailField().sendKeys(new LoginPageUS2().getEmailValid());
+                case "onlyPassword" ->
+                        new LoginPageUS2().getPasswordField().sendKeys(new LoginPageUS2().getPasswordValid());
+                default -> throw new RuntimeException("invalid entry");
+            }
+            new LoginPageUS2().getSignInButton().click();
+            SeleniumUtils.waitFor(1);
+        }
+    }
+
+    @Then("Sign in button should be disabled and user should remain on the Sign In page")
+    public void sign_in_button_should_be_disabled_and_user_should_remain_on_the_sign_in_page() {
+        String expectedLoginPageTitle = "Login - Duobank URLA (Uniform Residential Loan Application) Mortgage Application";
+        Assert.assertEquals(expectedLoginPageTitle, Driver.getDriver().getTitle());
+    }
+
+    @When("the user clicks Sign In button by filling both email and password fields")
+    public void the_user_clicks_sign_in_button_by_filling_both_email_and_password_fields() {
+        new LoginPageUS2().getEmailField().clear();
+        new LoginPageUS2().getPasswordField().clear();
+        new LoginPageUS2().getEmailField().sendKeys(new LoginPageUS2().getEmailValid());
+        new LoginPageUS2().getPasswordField().sendKeys(new LoginPageUS2().getPasswordValid());
+        new LoginPageUS2().getSignInButton().click();
+        SeleniumUtils.waitFor(1);
+    }
+
+    private String expectedErrorMessage1;
+    private String expectedErrorMessage2;
+    private String expectedErrorMessage3;
+
+    @When("the user enters incorrect credentials and clicks Sign In button")
+    public void the_user_enters_incorrect_credentials_and_clicks_sign_in_button(List<Map<String, String>> dataTable) {
+        Faker faker = new Faker();
+        Driver.quitDriver();
+
+        for (Map<String, String> row : dataTable) {
+            String field = row.get("field");
+
+            Driver.getDriver().get(ConfigReader.getProperty("url"));
+            Driver.getDriver().manage().window().maximize();
+            Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+
+            new LoginPageUS2().getEmailField().clear();
+            new LoginPageUS2().getPasswordField().clear();
+
+            switch (field) {
+                case "IncorrectEmail-IncorrectPassword" -> {
+                    new LoginPageUS2().getEmailField().sendKeys(faker.internet().emailAddress());
+                    new LoginPageUS2().getPasswordField().sendKeys(faker.internet().password());
+                    new LoginPageUS2().getSignInButton().click();
+                    if (SeleniumUtils.elementExists(new LoginPageUS2().getLoginFailedError(), 1)) {
+                        expectedErrorMessage1 = new LoginPageUS2().getLoginFailedError().getText();
+                    } else {
+                        expectedErrorMessage1 = "searched element does not exist";
+                    }
+                    Driver.quitDriver();
+                }
+                case "CorrectEmail-IncorrectPassword" -> {
+                    new LoginPageUS2().getEmailField().sendKeys(new LoginPageUS2().getEmailValid());
+                    new LoginPageUS2().getPasswordField().sendKeys(faker.internet().password());
+                    new LoginPageUS2().getSignInButton().click();
+                    if (SeleniumUtils.elementExists(new LoginPageUS2().getLoginFailedError(), 1)) {
+                        expectedErrorMessage2 = new LoginPageUS2().getLoginFailedError().getText();
+                    } else {
+                        expectedErrorMessage2 = "searched element does not exist";
+                    }
+                    Driver.quitDriver();
+                }
+                case "IncorrectEmail-CorrectPassword" -> {
+                    new LoginPageUS2().getEmailField().sendKeys(faker.internet().emailAddress());
+                    new LoginPageUS2().getPasswordField().sendKeys(new LoginPageUS2().getPasswordValid());
+                    new LoginPageUS2().getSignInButton().click();
+                    if (SeleniumUtils.elementExists(new LoginPageUS2().getLoginFailedError(), 1)) {
+                        expectedErrorMessage3 = new LoginPageUS2().getLoginFailedError().getText();
+                    } else {
+                        expectedErrorMessage3 = "searched element does not exist";
+                    }
+                    Driver.quitDriver();
+                }
+                default -> throw new RuntimeException("invalid entry");
+            }
+        }
+    }
+
+    @Then("the user should see error message \"Login Failed\" indicating email or password are incorrect")
+    public void the_user_should_see_error_message_login_failed_indicating_email_or_password_are_incorrect() {
+
+        Assert.assertTrue(expectedErrorMessage1.contains("Login Failed"));
+        Assert.assertTrue(expectedErrorMessage2.contains("Login Failed"));
+        Assert.assertTrue(expectedErrorMessage3.contains("Login Failed"));
     }
 
 
