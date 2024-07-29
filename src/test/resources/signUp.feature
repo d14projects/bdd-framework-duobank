@@ -7,7 +7,7 @@
     Given the user is on the login page
 
     @signup
-    Scenario: Successful sign up as a new user
-      When the user clicks sign up link
+   Scenario: Successful sign up as a new user
+     When the user clicks sign up link
       And enters firstName, lastName, emailAddress, password
       Then the user should see Registration Successful message
