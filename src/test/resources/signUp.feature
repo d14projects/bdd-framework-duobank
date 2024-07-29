@@ -8,6 +8,7 @@ Feature: User Story 1. Duobank App Sign Up
     Given the user navigates to the sign in page
     When the user clicks sign up link
 
+
 #  @signup
   Scenario: The Sign Up page should include input fields for
   the user's First Name, Last Name, Email Address, and Password.
@@ -58,3 +59,4 @@ Feature: User Story 1. Duobank App Sign Up
     When the user confirms "Already have an account? Sign in" link is displayed
     And  the user clicks on "Already have an account? Sign in" link
     Then the user should be redirected to the Sign In Page
+
