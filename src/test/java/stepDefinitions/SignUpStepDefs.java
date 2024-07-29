@@ -19,7 +19,7 @@ import java.util.Map;
 
 public class SignUpStepDefs {
 
-    @Given("the user is on the login page")
+    @Given("the user navigates to the sign in page")
     public void theUserIsOnTheHomepage() {
         Driver.getDriver().get(ConfigReader.getProperty("url"));
     }
@@ -193,20 +193,18 @@ public class SignUpStepDefs {
             new SignUpPageUS1().getPasswordField().clear();
 
             switch (field) {
-                case "0":
-                    break;
-                case "1":
-                    new SignUpPageUS1().getFirstNameField().sendKeys(new Faker().name().firstName());
-                    break;
-                case "2":
+                case "0" -> {}
+                case "1" -> new SignUpPageUS1().getFirstNameField().sendKeys(new Faker().name().firstName());
+                case "2" -> {
                     new SignUpPageUS1().getFirstNameField().sendKeys(new Faker().name().firstName());
                     new SignUpPageUS1().getLastNameField().sendKeys(new Faker().name().lastName());
-                    break;
-                case "3":
+                }
+                case "3" -> {
                     new SignUpPageUS1().getFirstNameField().sendKeys(new Faker().name().firstName());
                     new SignUpPageUS1().getLastNameField().sendKeys(new Faker().name().lastName());
                     new SignUpPageUS1().getEmailField().sendKeys(new Faker().internet().emailAddress());
-                    break;
+                }
+                default -> throw new RuntimeException("invalid entry");
             }
             new SignUpPageUS1().getRegisterButton().click();
             SeleniumUtils.waitFor(3);
@@ -241,6 +239,7 @@ public class SignUpStepDefs {
         new SignUpPageUS1().getEmailField().sendKeys("jglob13@gmail.com", Keys.TAB);
         SeleniumUtils.waitFor(2);
     }
+
     @Then("an error message “This email already used” should be displayed.")
     public void an_error_message_this_email_already_used_should_be_displayed() {
         Assert.assertTrue(new SignUpPageUS1().getEmailError().getText().contains("This email already used"));
@@ -261,6 +260,7 @@ public class SignUpStepDefs {
     public void the_user_clicks_on_already_have_an_account_sign_in_link() {
         new SignUpPageUS1().getAlreadyHaveAccountLink().click();
     }
+
     @Then("the user should be redirected to the Sign In Page")
     public void the_user_should_be_redirected_to_the_sign_in_page() {
 
@@ -268,7 +268,6 @@ public class SignUpStepDefs {
         String actualPageTitle = Driver.getDriver().getTitle();
         Assert.assertEquals(expectedPageTitle, actualPageTitle);
     }
-
 
 
 }
