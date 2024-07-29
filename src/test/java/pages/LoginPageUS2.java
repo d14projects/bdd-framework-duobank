@@ -1,7 +1,6 @@
 package pages;
 
 import lombok.Data;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -23,13 +22,16 @@ public class LoginPageUS2 {
     @FindBy(name = "login")
     private WebElement signInButton;
 
-private String emailAddress = "jglob@gmail.com";
+private String emailValid = "jglob@gmail.com";
 private String passwordValid = "Password1";
 
     public void login(){
-        emailField.sendKeys(emailAddress);
+        emailField.sendKeys(emailValid);
         passwordField.sendKeys(passwordValid);
         signInButton.click();
     }
+
+    @FindBy(xpath = "//div[@class='card-header pb-1']")
+    private WebElement loginFailedError;
 
 }
