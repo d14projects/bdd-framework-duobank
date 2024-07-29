@@ -4,7 +4,12 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.*;
+import pages.LoginPageUS2;
 
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -12,6 +17,7 @@ import java.nio.file.Path;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.*;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.function.Function;
 
@@ -216,5 +222,25 @@ public class SeleniumUtils {
         for (char c : str.toCharArray()) {if (Character.isDigit(c)) {return true;}}
         return false;
     }
+
+    public static String copyAndGetClipboardText(WebDriver driver, WebElement element){
+        String copiedText;
+        try {
+            Actions actions = new Actions(driver);
+            actions.click(element)
+                    .keyDown(Keys.COMMAND)
+                    .sendKeys("a")
+                    .sendKeys("c")
+                    .keyUp(Keys.COMMAND)
+                    .perform();
+            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+            Transferable transferable = clipboard.getContents(null);
+            copiedText = (String) transferable.getTransferData(DataFlavor.stringFlavor);
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+        return copiedText;
+    }
+
 
 }

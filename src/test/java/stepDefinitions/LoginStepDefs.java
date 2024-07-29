@@ -86,6 +86,7 @@ public class LoginStepDefs {
     @When("the user enters password to the password field")
     public void the_user_enters_password_to_the_password_field() {
         new LoginPageUS2().getPasswordField().sendKeys("Password1");
+      //  new LoginPageUS2().getEmailField().sendKeys(" ");
     }
 
     @Then("the password field should be masked and not show entered characters")
@@ -106,26 +107,11 @@ public class LoginStepDefs {
 //        }
 //        SeleniumUtils.waitFor(10);
 //
-//        try {
-//            Actions actions = new Actions(Driver.getDriver());
-//            actions.click(new LoginPageUS2().getPasswordField())
-//                    .keyDown(Keys.COMMAND)
-//                    .sendKeys("a")
-//                    .sendKeys("c")
-//                    .keyUp(Keys.COMMAND)
-//                    .perform();
-//
-//            SeleniumUtils.waitFor(5);
-//
-//            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-//            Transferable transferable = clipboard.getContents(null);
-//
-//            String copiedText = (String) transferable.getTransferData(DataFlavor.stringFlavor);
-//            System.out.println("Copied Text: " + copiedText);
-//
-//        } catch (Throwable e) {
-//            throw new RuntimeException(e);
-//        }
+//        System.out.println("Email Field Clipboard: "
+//                + SeleniumUtils.copyAndGetClipboardText(Driver.getDriver(), new LoginPageUS2().getEmailField()) );
+
+        System.out.println("Password Field Clipboard: "
+                + SeleniumUtils.copyAndGetClipboardText(Driver.getDriver(), new LoginPageUS2().getPasswordField()) );
 
 
     }
