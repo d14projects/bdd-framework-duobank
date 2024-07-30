@@ -28,7 +28,7 @@ public class Hooks {
 
     @AfterAll
     public static void tearDownSignUp() {
-//            CSVEraser.deleteFile(FrameworkConstants.SIGNUP_FILE);
+            CSVEraser.deleteFile(FrameworkConstants.SIGNUP_FILE);
             CSVEraser.deleteFile(FrameworkConstants.VALID_LOGIN_FILE);
             CSVEraser.deleteFile(FrameworkConstants.INVALID_LOGIN_FILE);
     }

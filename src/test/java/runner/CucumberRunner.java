@@ -14,9 +14,10 @@ import org.junit.runner.RunWith;
             "pretty",
             "html:target/cucumber-report/report.html"
             }
-   //       , publish = true  // generates a web based report with link on the console
-         , stepNotifications = true
-      //  , dryRun = true   // dry runs the scenario for snippet generation
+
+          , publish = true  // generates a web based report with link on the console
+//         , stepNotifications = true
+//          , dryRun = true   // dry runs the scenario for snippet generation
 
 )
 @RunWith(Cucumber.class)
