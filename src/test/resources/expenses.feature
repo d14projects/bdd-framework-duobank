@@ -5,4 +5,13 @@ Feature: User Story 6.
   situation and expenses so that I can move forward with the mortgage
   application process.
   Background:
-    Given the user has completed the Persona Information Page
+    Given the user has completed the Preapproval Details page
+    Given the user has completed the Personal Information Page
+
+    Scenario: The "Do you currently rent or own?" field should have two checkboxes, one
+    for "Rent" and one for "Own". The user should be able to select only one
+    checkbox
+      Given the user is on the Expenses page
+      And sees two checkbox fields "Rent" and "Own"
+      And user can select only one checkbox at a time
+      Then the other checkbox is not selected

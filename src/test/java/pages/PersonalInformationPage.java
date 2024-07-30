@@ -13,8 +13,10 @@ public class PersonalInformationPage {
 
     @FindBy(xpath = "//label[@for='coborrower1']")
     private WebElement coBorrowerYesCheckbox;
-    @FindBy(id = "coborrower2")
+
+    @FindBy(xpath = "//label[@for='coborrower2']")
     private WebElement coBorrowerNoCheckbox;
+
     @FindBy(className = "co-borrower")
     private WebElement coborrowerSection;
 
@@ -91,8 +93,12 @@ public class PersonalInformationPage {
     @FindBy(xpath = "//label[@id='c_ssn-error']")
     private WebElement cb_ssnFieldError;
 
+    @FindBy (xpath = "//label[@for='privacypolicy']")
+    private  WebElement privacyCheckbox;
+
     @FindBy(linkText = "Next")
     private WebElement nextButton;
+
 
 
 
