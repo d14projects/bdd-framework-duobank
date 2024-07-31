@@ -3,21 +3,11 @@ package stepDefinitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.ExpensesPageUS6;
-import pages.LoginPageUS2;
 import pages.PersonalInformationPage;
-import utilities.ConfigReader;
-import utilities.Driver;
-import utilities.FrameworkConstants;
 import utilities.SeleniumUtils;
-
-import java.time.Duration;
 
 public class ExpensesPageDefs {
     @Given("the user has completed the Personal Information Page")
@@ -54,7 +44,7 @@ public class ExpensesPageDefs {
     public void the_user_is_on_the_expenses_page() {
         SeleniumUtils.waitForPageToLoad(3);
         ExpensesPageUS6 accountExpenses=new ExpensesPageUS6();
-        Assert.assertTrue(accountExpenses.getStepExpenses().isEnabled());
+        Assert.assertTrue(accountExpenses.getTabExpenses().isEnabled());
         SeleniumUtils.waitForVisibility(accountExpenses.getHeadTitle(),1);
         Assert.assertEquals("Current Monthly Housing Expenses",accountExpenses.getHeadTitle().getText());
     }
@@ -79,4 +69,6 @@ public class ExpensesPageDefs {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
+
+
 }

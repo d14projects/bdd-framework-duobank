@@ -1,4 +1,4 @@
-@UserStory6
+@UserStory6 @REGRESSION
 Feature: User Story 6.
   As a potential homebuyer, I want to use the Expenses page of my bank's
   mortgage application to provide information about my current living

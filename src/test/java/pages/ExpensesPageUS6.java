@@ -19,9 +19,17 @@ public class ExpensesPageUS6 {
     private WebElement checkboxOwn;
 
     @FindBy(xpath = "//div[@class='steps clearfix']//a[@id='steps-uid-0-t-2']")
-    private WebElement stepExpenses;
+    private WebElement tabExpenses;
 
     @FindBy(xpath = "//h6[@class='py-50' and contains(text(),'Current Monthly Housing Expenses')]")
     private WebElement headTitle;
 
+    @FindBy(id="monthlyrentalpayment")
+    private WebElement monthlyRentalPaymentField;
+
+    @FindBy(linkText = "Next")
+    private WebElement nextButton;
+    @FindBy(xpath = "//div[@class='steps clearfix']//a[@id='steps-uid-0-t-3']")
+    private WebElement tabEmploymentAndIncome;
 }
+
