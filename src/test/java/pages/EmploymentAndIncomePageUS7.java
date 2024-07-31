@@ -11,6 +11,12 @@ public class EmploymentAndIncomePageUS7 {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
+    @FindBy(xpath = "//h6[@class='py-50']")
+    private  WebElement headerText;
+    public String getHeaderText(){
+       return headerText.getText();
+
+    }
     @FindBy(xpath = "//div[@class='Employer']//a[@id='clear1']")
     private WebElement clearButton;
 
