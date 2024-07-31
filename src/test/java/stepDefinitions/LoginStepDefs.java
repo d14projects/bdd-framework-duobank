@@ -2,14 +2,23 @@ package stepDefinitions;
 
 import com.github.javafaker.Faker;
 import io.cucumber.java.en.*;
+import net.sourceforge.tess4j.ITesseract;
+import net.sourceforge.tess4j.Tesseract;
+import net.sourceforge.tess4j.TesseractException;
 import org.junit.Assert;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.io.FileHandler;
 import pages.LoginPageUS2;
 import pages.SignUpPageUS1;
 import utilities.ConfigReader;
 import utilities.Driver;
 import utilities.SeleniumUtils;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
@@ -73,32 +82,14 @@ public class LoginStepDefs {
     @When("the user enters password to the password field")
     public void the_user_enters_password_to_the_password_field() {
         new LoginPageUS2().getPasswordField().sendKeys("Password1");
-        //  new LoginPageUS2().getEmailField().sendKeys(" ");
     }
 
     @Then("the password field should be masked and not show entered characters")
-    public void the_password_field_should_be_masked_and_not_show_entered_characters() {
+    public void the_password_field_should_be_masked_and_not_show_entered_characters() throws IOException, TesseractException {
 
-        String testPassword = "Password1";
-        System.out.println("Test password: " + testPassword);
-
-        String actualPassword = new LoginPageUS2().getPasswordField().getAttribute("value");
-        System.out.println("Masked Text: " + actualPassword);
-
-//        boolean isMasked = true;
-//
-//        for (char c : actualPassword.toCharArray()){
-//            if (c != '*');
-//            isMasked = false;
-//            break;
-//        }
-//        SeleniumUtils.waitFor(10);
-//
-//        System.out.println("Email Field Clipboard: "
-//                + SeleniumUtils.copyAndGetClipboardText(Driver.getDriver(), new LoginPageUS2().getEmailField()) );
-
-        System.out.println("Password Field Clipboard: "
-                + SeleniumUtils.copyAndGetClipboardText(Driver.getDriver(), new LoginPageUS2().getPasswordField()));
+        String actualType = new LoginPageUS2().getPasswordField().getAttribute("type");
+        String expectedType = "password";
+        Assert.assertEquals(expectedType, actualType);
     }
 
 
@@ -218,4 +209,5 @@ public class LoginStepDefs {
         String expectedPageTitle = Driver.getDriver().getTitle();
         Assert.assertEquals(expectedPageTitle, actualPageTitle);
     }
+
 }
