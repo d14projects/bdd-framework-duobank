@@ -1,5 +1,5 @@
 @REGRESSION @login
-Feature: Duobank App Sign In
+Feature: User Story 2: Duobank App Sign In
   As a user,
   I want to be able to sign in to my mortgage account,
   so that I can access my account information and perform necessary actions.
@@ -25,7 +25,7 @@ Feature: Duobank App Sign In
   When the user enters email address to the email field
   Then the email should be in a valid email address format e.g. example@example.com
 
-#  @login not working for masked
+#  @login  @masked
   Scenario: The password field should be masked and not show the entered characters
   When the user enters password to the password field
   Then the password field should be masked and not show entered characters
