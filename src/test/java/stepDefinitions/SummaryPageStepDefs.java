@@ -149,4 +149,21 @@ public class SummaryPageStepDefs {
         SeleniumUtils.waitFor(1);
     }
 
+    @Then("the user is able to see the Submit button")
+    public void the_user_is_able_to_see_the_submit_button() {
+        Assert.assertTrue(new SummaryPageUS10().getSubmitButton().isDisplayed());
+    }
+
+    @When("the user clicks on the Submit button")
+    public void the_user_clicks_on_the_submit_button() {
+        new SummaryPageUS10().getSubmitButton().click();
+        SeleniumUtils.waitFor(1);
+    }
+    @Then("the user should see Application Submitted Successfully message")
+    public void the_user_should_see_application_submitted_successfully_message() {
+//        System.out.println(Driver.getDriver().getPageSource().contains("Application Submiited Successfully"));
+//        System.out.println(new SummaryPageUS10().getSubmitSuccessMessage().getText());
+        Assert.assertTrue(new SummaryPageUS10().getSubmitSuccessMessage().isDisplayed());
+    }
+
 }

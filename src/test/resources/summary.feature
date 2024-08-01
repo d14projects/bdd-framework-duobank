@@ -1,4 +1,4 @@
-@REGRESSION
+@REGRESSION @summary
 Feature: User Story 10: Summary Page Functionality
   As a mortgage loan applicant,
   I want to be able to review and edit the details of my loan application on a summary page
@@ -46,7 +46,7 @@ Feature: User Story 10: Summary Page Functionality
   to that section.
     Then each section should have "Edit" button displayed
 
-  @summary
+#  @summary
   Scenario: Clicking the "Edit" button for a section should take the user back to the relevant page in the main application
   flow so that they can make any necessary changes.
     When the user clicks on the Edit button for a "PreApproval Details" section
@@ -61,3 +61,15 @@ Feature: User Story 10: Summary Page Functionality
     Then the user is taken to the Credit Report page of the application
     When the user clicks on the Edit button for a "eConsent" section
     Then the user is taken to the E-Consent page of the application
+
+#  @summary
+  Scenario: The Summary page should include a "Submit" button that the user can click once they have reviewed and
+  edited all sections of the application.
+    Then the user is able to see the Submit button
+
+#  (typo in Submit message)
+#  @summary
+  Scenario: Clicking the "Submit" button should submit the application and take the user to a confirmation page that
+  confirms that their application has been received and will be reviewed by the bank.
+    When the user clicks on the Submit button
+    Then the user should see Application Submitted Successfully message

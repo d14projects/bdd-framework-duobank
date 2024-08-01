@@ -207,5 +207,9 @@ public class SummaryPageUS10 extends BasePage {
     @FindBy(id = "eConsentEdit")
     private WebElement eConsentEditButton;
 
+    @FindBy(linkText = "Save")
+    private WebElement submitButton;
 
+    @FindBy(xpath = "//div[.='Application Submiited Successfully']")
+    private WebElement submitSuccessMessage;
 }

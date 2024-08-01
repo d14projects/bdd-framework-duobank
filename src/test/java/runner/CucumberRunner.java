@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 
 @CucumberOptions(
 
-            tags = "@summary",
+            tags = "@REGRESSION",
             features = "src/test/resources",
             glue = "stepDefinitions",
             plugin = {
