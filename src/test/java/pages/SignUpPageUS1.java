@@ -6,13 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
+import utilities.SeleniumUtils;
 
 @Data
-public class SignUpPageUS1 {
-
-    public SignUpPageUS1(){
-        PageFactory.initElements(Driver.getDriver(), this);
-    }
+public class SignUpPageUS1 extends BasePage {
 
     @FindBy (linkText = "Sign up")
     private WebElement signUpLink;
