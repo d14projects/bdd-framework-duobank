@@ -99,15 +99,15 @@ public class ApplicationDef {
         double actual=new ApplicationPage().getDownPaymentPercentage();
         assertEquals(expected, actual, 0.01);
     }
-    /* @And("the Source of Down Payment field should have the following options in the dropdown:{string},{string},{string}")
-        public void theSourceOfDownPaymentFieldShouldHaveTheFollowingOptionsInTheDropdown(String arg0, String arg1, String arg2) {
+     @And("the Source of Down Payment field should have the following options in the dropdown:{string},{string},{string}")
+        public void theSourceOfDownPaymentFieldShouldHaveTheFollowingOptionsInTheDropdown(String arg0, String arg1, String arg2) throws InterruptedException {
             List<String> expectedOptions2 = Arrays.asList(arg0, arg1, arg2);
             ApplicationPage applicationPage = new ApplicationPage();
             List<String> actualOptions2 = applicationPage.sourceOfDownPaymentOptions();
             assertEquals("Dropdown options do not match expected options",
                     expectedOptions2,actualOptions2);
-            ---And the Source of Down Payment field should have the following options in the dropdown:"Checking/Savings (most recent bank statement)","Equity on Pending Sale (executed sales contract)","Other type of Down Payment"
-        }*/
+            //And the Source of Down Payment field should have the following options in the dropdown:"Checking/Savings (most recent bank statement)","Equity on Pending Sale (executed sales contract)","Other type of Down Payment"
+        }
     @When("I enter {string} into the Additional Funds field")
     public void iEnterIntoTheAdditionalFundsField(String arg0) {
         new ApplicationPage().additionalFunds(arg0);

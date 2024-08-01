@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 
 @CucumberOptions(
 
-            tags = "@login",
+            tags = "@applicationSteps",
             features = "src/test/resources",
             glue = "stepDefinitions",
             plugin = {
