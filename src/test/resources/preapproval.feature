@@ -25,10 +25,12 @@
     When I enter "5000.00" into the Down Payment Amount field
     Then Down Payment Amount field should accept the value "5000.00"
     And You Loan Amount filed should automatically calculate the down payment percentage
+   And  the Source of Down Payment field should have the following options in the dropdown:"Checking/Savings (most recent bank statement)","Equity on Pending Sale (executed sales contract)","Other type of Down Payment"
 
 
     When I enter "3000.00" into the Additional Funds field
     Then Additional Funds  field should accept the value "3000.00"
+
 
     @navigation
     Scenario: Preventing navigation with incomplete required fields

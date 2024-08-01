@@ -1,5 +1,6 @@
 package pages;
 
+import io.cucumber.java.en.Then;
 import lombok.Data;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -50,7 +51,7 @@ public class ApplicationPage {
     private WebElement downPaymentPercentage;
 
     //@FindBy(css = ".select2-selection")
-    @FindBy(xpath = "//span[contains(@class, 'select2-selection__rendered')]")
+    @FindBy(xpath = "(//span[@class='select2-selection select2-selection--single'])[2]")
     private WebElement sourceOfDownPaymentOptionsTab;
 
     @FindBy(id = "additionalfunds")
@@ -126,16 +127,17 @@ public class ApplicationPage {
         return (downPaymentAmount / estimatedPriceAmount) * 100;
     }
 
-    /*
-public List<String> sourceOfDownPaymentOptions() {
+
+public List<String> sourceOfDownPaymentOptions() throws InterruptedException {
         sourceOfDownPaymentOptionsTab.click();
         List<WebElement> options2 = Driver.getDriver().findElements(By.xpath(("//ul[contains(@class, 'select2-results__options')]/li")));
-        List<String> optionsText2 = new ArrayList<>();
-        for (WebElement option2 : options2) {
+       List<String> optionsText2 = new ArrayList<>();
+       for (WebElement option2 : options2) {
             optionsText2.add(option2.getText());
         }
+    Thread.sleep(3000);
         return optionsText2;
-    }*/
+    }
     public void additionalFunds(String amount) {
         additionalPrice.sendKeys(amount);
     }
