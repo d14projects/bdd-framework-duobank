@@ -27,6 +27,13 @@ public class ExpensesPageUS6 {
     @FindBy(id="monthlyrentalpayment")
     private WebElement monthlyRentalPaymentField;
 
+    public WebElement getMonthlyrentalpaymentError() {
+        return monthlyrentalpaymentError;
+    }
+
+    @FindBy(xpath = " //label[@id='monthlyrentalpayment-error']")
+    private WebElement monthlyrentalpaymentError;
+
     @FindBy(linkText = "Next")
     private WebElement nextButton;
     @FindBy(xpath = "//div[@class='steps clearfix']//a[@id='steps-uid-0-t-3']")

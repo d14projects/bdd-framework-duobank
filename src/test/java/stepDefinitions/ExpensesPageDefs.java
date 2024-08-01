@@ -1,9 +1,12 @@
 package stepDefinitions;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import pages.ExpensesPageUS6;
 import pages.PersonalInformationPage;
@@ -80,5 +83,27 @@ public class ExpensesPageDefs {
         Assert.assertFalse(account.getCheckboxOwn().isSelected());
     }
 
+    @When("user selects Rent checkbox")
+    public void user_selects_rent_checkbox() {
+        ExpensesPageUS6 account = new ExpensesPageUS6();
+        SeleniumUtils.waitForPageToLoad(2);
+        if (account.getCheckboxRent().isDisplayed() && !account.getCheckboxRent().isSelected()){
+        account.getCheckboxRent().click();}
+    }
 
+    @And("the user skips Monthly Rental Payment field and click Next button")
+    public void theUserSkipsMonthlyRentalPaymentFieldAndClickNextButton() {
+        ExpensesPageUS6 acc = new ExpensesPageUS6();
+        SeleniumUtils.waitFor(1);
+        acc.getNextButton().click();
+
+
+    }
+
+    @Then("the Monthly Rental Payment field should be required")
+    public void theMonthlyRentalPaymentFieldShouldBeRequired() {
+           // SeleniumUtils.waitForVisibility(new ExpensesPageUS6().getMonthlyrentalpaymentError(), 2);
+            Assert.assertTrue(new ExpensesPageUS6().getMonthlyrentalpaymentError().isDisplayed());
+
+    }
 }
