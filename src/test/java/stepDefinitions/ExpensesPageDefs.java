@@ -10,6 +10,7 @@ import pages.PersonalInformationPage;
 import utilities.SeleniumUtils;
 
 public class ExpensesPageDefs {
+
     @Given("the user has completed the Personal Information Page")
     public void theUserHasCompletedThePersonalInformationPage() {
 //        Driver.getDriver().get(FrameworkConstants.HOMEPAGE_URL);
@@ -61,13 +62,22 @@ public class ExpensesPageDefs {
 
     @Given("user can select only one checkbox at a time")
     public void user_can_select_only_one_checkbox_at_a_time() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        ExpensesPageUS6 account = new ExpensesPageUS6();
+        SeleniumUtils.waitForPageToLoad(3);
+        if (account.getCheckboxOwn().isSelected() && account.getCheckboxOwn().isDisplayed()) {
+            account.getCheckboxOwn().click();
+        }
+        if (account.getCheckboxRent().isDisplayed()) {
+            account.getCheckboxRent().click();
+        }
     }
+
+
     @Then("the other checkbox is not selected")
     public void the_other_checkbox_is_not_selected() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        ExpensesPageUS6 account = new ExpensesPageUS6();
+        Assert.assertTrue(account.getCheckboxRent().isSelected());
+        Assert.assertFalse(account.getCheckboxOwn().isSelected());
     }
 
 
