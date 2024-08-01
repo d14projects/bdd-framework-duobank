@@ -60,6 +60,21 @@
             <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.26.3</version>
+            <scope>test</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>net.sourceforge.tess4j</groupId>
+            <artifactId>tess4j</artifactId>
+            <version>5.12.0</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
@@ -71,6 +86,15 @@
                     <version>3.3.1</version>
                     <configuration>
                         <includes>CucumberRunner.java</includes>
+
+<!--               these 2 lines must be added when running scenarios in parallel through cmd-->
+<!--                        <parallel>methods</parallel>-->
+<!--               <useUnlimitedThreads>true</useUnlimitedThreads>-->
+
+<!--                use these two if you want to limit threads instead line 91 and 92-->
+<!--                        <threadCount>3</threadCount>-->
+<!--                        <perCoreThreadCount>false</perCoreThreadCount>-->
+
                     </configuration>
                 </plugin>
             </plugins>
