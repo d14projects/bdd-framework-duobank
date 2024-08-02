@@ -222,6 +222,7 @@ public class SignUpStepDefs {
     public void the_user_clicks_sign_up_button_by_filling_all_required_input_fields() {
         new SignUpPageUS1().fillAllFields();
         new SignUpPageUS1().getRegisterButton().click();
+        SeleniumUtils.waitFor(1);
     }
 
     @Then("the user should see Registration Successful message and be redirected to the Sign In Page")
