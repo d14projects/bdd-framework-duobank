@@ -143,6 +143,7 @@ public class ApplicationListStepDefs {
             String actualName = actualFirstName.get(i);
             Assert.assertEquals(expectedName, actualName);
             new ApplicationListPageUS11().getDashboardLink().click();
+            SeleniumUtils.waitFor(1);
             new DashboardPage().getApplicationListLink().click();
         }
     }
