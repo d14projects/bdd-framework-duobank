@@ -23,4 +23,24 @@ public class ApplicationListPageUS11 extends BasePage{
     @FindBy(xpath = "//input[@type='search']")
     private WebElement searchBox;
 
+    @FindBy(xpath = "//a[@class='btn btn-info']")
+    private List<WebElement> viewDetailsButtons;
+
+    @FindBy(xpath = "//a[@href='dashboard.php']")
+    private WebElement dashboardLink;
+
+    @FindBy(xpath = "//td[@colspan='2']")
+    private WebElement nameViewDetails;
+
+    @FindBy(xpath = "//th[.='Loan ID']")
+    private WebElement loanIDSort;
+
+    @FindBy(xpath = "//th[.='Borrower Name']")
+    private WebElement borrowerSort;
+
+    @FindBy(xpath = "//th[.='Loan Amount']")
+    private WebElement amountSort;
+
+
+
 }

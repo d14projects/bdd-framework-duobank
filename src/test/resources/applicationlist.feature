@@ -1,4 +1,4 @@
-@REGRESSION
+@REGRESSION @applications
 Feature: User Story 11: Appllicaton List
   As a user,
   I want to see a list of all my submitted applications
@@ -55,6 +55,17 @@ Feature: User Story 11: Appllicaton List
       | Larry     | McGlynn   |
       | Jon       | Glob      |
 
-  @applications
-  Scenario: The loan amount should be displayed in US dollars and should be an integer.
+#  @applications
+  Scenario: The loan amount should be displayed in US dollars and should be an integer. FIX BUG
     Then the loan amount should be consist only of digits and contain $ sign
+
+#  @applications
+  Scenario: The loan details column should have view details button that should take the user to a page with loan details.
+    Then the user should see "View Details" button displayed and clicking should take to correct loan details page
+
+#    loan amount accepts non integer like letters
+#  @applications
+  Scenario: The table should have sorting functionality for each column.
+    Then the borrower should be able to sort the "LOAN ID" column in ascending and descending orders
+    Then the borrower should be able to sort the "LOAN AMOUNT" column in ascending and descending orders
+    Then the borrower should be able to sort the "BORROWER NAME" column in ascending and descending orders
