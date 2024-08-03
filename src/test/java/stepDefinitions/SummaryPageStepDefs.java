@@ -157,7 +157,7 @@ public class SummaryPageStepDefs {
     @When("the user clicks on the Submit button")
     public void the_user_clicks_on_the_submit_button() {
         new SummaryPageUS10().getSubmitButton().click();
-        SeleniumUtils.waitFor(1);
+        SeleniumUtils.waitFor(2);
     }
     @Then("the user should see Application Submitted Successfully message")
     public void the_user_should_see_application_submitted_successfully_message() {
