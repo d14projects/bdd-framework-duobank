@@ -1,5 +1,6 @@
 package pages;
 
+import com.github.javafaker.Faker;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.openqa.selenium.By;
@@ -10,6 +11,7 @@ import utilities.Driver;
 import utilities.SeleniumUtils;
 
 import java.util.List;
+import java.util.Random;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -141,15 +143,22 @@ public class SummaryPageUS10 extends BasePage {
         realtorNoCheckbox.click();
         loanOfficerNoCheckbox.click();
         new Select(dropdownPreapprovalPage).selectByVisibleText("Purchase a Home");
-        estimatedPurchasePriceField.sendKeys("100000");
-        downPaymentField.sendKeys("20000");
+        estimatedPurchasePriceField.sendKeys(""+(new Random().nextInt(500000)+300000));
+        downPaymentField.sendKeys(""+(new Random().nextInt(50000)+20000));
         addtFundsField.sendKeys("0");
         nextButtonPreapproval.click();
 
         coBorrowerNoCheckbox.click();
-        firstNameField.sendKeys("Jon");
-        lastNameField.sendKeys("Glob");
-        emailField.sendKeys("jglob@gmail.com");
+
+        String firstName = new Faker().name().firstName();
+        firstNameField.sendKeys(firstName);
+
+        String lastName = new Faker().name().lastName();
+        lastNameField.sendKeys(lastName);
+
+        String email = new Faker().internet().emailAddress();
+        emailField.sendKeys(email);
+
         dobField.sendKeys("01/01/1980");
         ssnField.sendKeys("234343456");
         new Select(maritalStatusDropdown).selectByVisibleText("Single");
@@ -167,9 +176,9 @@ public class SummaryPageUS10 extends BasePage {
         checkboxNoCreditReport.click();
         nextButtonCredit.click();
 
-        eConsentFirstName.sendKeys("Jon");
-        eConsentLastName.sendKeys("Glob");
-        eConsentEmail.sendKeys("jglob@gmail.com");
+        eConsentFirstName.sendKeys(firstName);
+        eConsentLastName.sendKeys(lastName);
+        eConsentEmail.sendKeys(email);
         nextButtonEConsent.click();
         SeleniumUtils.waitFor(1);
     }
