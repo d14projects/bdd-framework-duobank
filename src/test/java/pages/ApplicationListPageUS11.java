@@ -4,12 +4,18 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import utilities.Driver;
 
 import java.util.List;
 
-@EqualsAndHashCode(callSuper = true)
+
 @Data
-public class ApplicationListPageUS11 extends BasePage{
+public class ApplicationListPageUS11 {
+
+    public ApplicationListPageUS11() {
+        PageFactory.initElements(Driver.getDriver(), this);
+    }
 
     @FindBy(name = "DataTables_Table_0_length")
     private WebElement dropdownApplicationList;
