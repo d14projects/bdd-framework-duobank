@@ -23,11 +23,11 @@ Feature: User Story 11: Appllicaton List
       | <search> |
 
     Examples:
-      | search |
-      | Judith |
-      | Dustin |
-      | Larry  |
-      | Jon    |
+      | search           |
+      | Judith Kuvalis   |
+      | Dustin Armstrong |
+      | Larry McGlynn    |
+      | Jon Glob         |
 
 #  @applications
   Scenario: The list of submitted applications should be displayed in a table with columns for

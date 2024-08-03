@@ -37,7 +37,7 @@ public class ApplicationListStepDefs {
     @When("the user enters the {string} term in the search field and that name exists in the database")
     public void the_user_enters_the_borrower_s_in_the_search_field(String searchTerm) {
         new ApplicationListPageUS11().getSearchBox().sendKeys(searchTerm);
-        SeleniumUtils.waitFor(1);
+        SeleniumUtils.waitFor(2);
     }
 
     @Then("the page should show loan application results for only that name")
@@ -45,7 +45,7 @@ public class ApplicationListStepDefs {
         List <String> actualFirstName = new ArrayList<>();
         for (WebElement e : new ApplicationListPageUS11().getRows()){
             String [] line = e.getText().split(" ");
-            actualFirstName.add(line[1]);
+            actualFirstName.add(line[1]+" "+line[2]);
         }
         for (String s : actualFirstName) {
             Assert.assertTrue(s.equalsIgnoreCase(dataTable.get(0).get("name")));
@@ -86,7 +86,7 @@ public class ApplicationListStepDefs {
     public void the_borrower_name_should_be_equal_to_format(String first, String last, List<Map<String,String>> dataTable) {
 
         String expectedFormat = first + " " + last;
-        new ApplicationListPageUS11().getSearchBox().sendKeys(first);
+        new ApplicationListPageUS11().getSearchBox().sendKeys(first+" "+ last);
         SeleniumUtils.waitFor(1);
 
         List<String> actualFormat = new ArrayList<>();
