@@ -69,6 +69,7 @@ Feature: User Story 10: Summary Page Functionality
 
 #  (typo in Submit message)
 #  @summary
+#  @click
   Scenario: Clicking the "Submit" button should submit the application and take the user to a confirmation page that
   confirms that their application has been received and will be reviewed by the bank.
     When the user clicks on the Submit button
