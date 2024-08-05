@@ -50,6 +50,6 @@ public class Hooks {
             scenario.attach(screenshotFile, "image/png", "failed");
         }
 
-      //  Driver.quitDriver();
+        Driver.quitDriver();
     }
 }

@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 
 
 
-            tags = " @navigation3",
+            tags = " @REGRESSION",
 
             features = "src/test/resources",
             glue = "stepDefinitions",
