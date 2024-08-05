@@ -11,7 +11,7 @@ public class EmploymentAndIncomePageUS7 {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
-    @FindBy(xpath = "//h6[@class='py-50']")
+    @FindBy(xpath = "//h6[@class='py-50' and text()='Borrower Employment Information']")
     private  WebElement headerText;
     public String getHeaderText(){
        return headerText.getText();
@@ -20,10 +20,14 @@ public class EmploymentAndIncomePageUS7 {
     @FindBy(xpath = "//div[@class='Employer']//a[@id='clear1']")
     private WebElement clearButton;
 
+    public WebElement getEmployerNameField() {
+        return employerNameField;
+    }
+
     @FindBy(xpath = "//input[@id='employername1']")
     private WebElement employerNameField;
 
-    @FindBy(xpath = "")
+    @FindBy(xpath = "//input[@id='position1']")
     private WebElement positionField;
 
 
@@ -31,6 +35,15 @@ public class EmploymentAndIncomePageUS7 {
     private WebElement cityField;
     @FindBy(xpath = "//select[@id='state1']")
     private WebElement stateDropdown;
+
+    public WebElement getStartDate() {
+        return startDate;
+    }
+
+    public WebElement getEndDate() {
+        return endDate;
+    }
+
     @FindBy(xpath = "//input[@id='start_date1']")
     private WebElement startDate;
     @FindBy(xpath = "//input[@id='end_date1']")
@@ -80,7 +93,11 @@ private WebElement incomeSourceDropdown1;
 @FindBy(xpath = "//button[@id='addemployer']")
     private WebElement addAnotherEmployerButton;
 
-@FindBy(xpath = "//input[@id='currentjob1']")
+    public WebElement getCurrentJobCheckbox() {
+        return currentJobCheckbox;
+    }
+
+    @FindBy(xpath = "//label[@for='currentjob1']//following-sibling::input[@id='currentjobsls']")
     private WebElement currentJobCheckbox;
 
 }
