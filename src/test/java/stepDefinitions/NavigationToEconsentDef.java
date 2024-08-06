@@ -13,8 +13,8 @@ import pages.DashboardPage;
 import pages.NavigationToEconsentPage;
 import utilities.ConfigReader;
 import utilities.Driver;
-
 import java.util.Map;
+
 
 import static org.junit.Assert.assertTrue;
 
@@ -101,6 +101,7 @@ public class NavigationToEconsentDef {
         System.out.println("Disclosure is not displayed as expected.");
         softAssertions.assertAll();
 
+
     }
 
     @And("i should see {string} and {string} buttons")
@@ -173,8 +174,6 @@ public class NavigationToEconsentDef {
     public void userWillBeRedirectedToManePage() {
         new NavigationToEconsentPage().amIOnManePage();
     }
-
-
 
 }
 
