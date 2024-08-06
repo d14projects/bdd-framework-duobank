@@ -4,22 +4,22 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.assertj.core.api.SoftAssertions;
 import org.checkerframework.checker.units.qual.N;
 import org.junit.Assert;
 import org.openqa.selenium.Alert;
-import org.testng.asserts.SoftAssert;
 import pages.ApplicationPage;
 import pages.DashboardPage;
 import pages.NavigationToEconsentPage;
 import utilities.ConfigReader;
 import utilities.Driver;
-
 import java.util.Map;
+
 
 import static org.junit.Assert.assertTrue;
 
 public class NavigationToEconsentDef {
-    private SoftAssert softAssert;
+
 
 
     @Given("I am logging to the Duobank")
@@ -66,9 +66,10 @@ public class NavigationToEconsentDef {
     @Then("i should see an error message")
     public void iShouldSeeAnErrorMessage() {
         boolean isErrorDisplayed = new NavigationToEconsentPage().isErrorDisplayedForRequiredFields();
-        softAssert = new SoftAssert();
-        softAssert.assertTrue(isErrorDisplayed, "Error message for missing required fields is not displayed as expected.");
-        softAssert.assertAll();
+        SoftAssertions softAssertions = new SoftAssertions();
+        softAssertions.assertThat(isErrorDisplayed).isTrue();
+        System.out.println("Error message for missing required fields is not displayed as expected.");
+        softAssertions.assertAll();
     }
     @When("i enter invalid email{string}")
     public void iEnterInvalidEmail(String arg0) {
@@ -83,9 +84,10 @@ public class NavigationToEconsentDef {
     @Then("i should see an error message for email")
     public void iShouldSeeAnErrorMessageForEmail() {
         boolean isErrorDisplayed2 = new NavigationToEconsentPage().isErrorDisplayedForEmail();
-        softAssert = new SoftAssert();
-        softAssert.assertTrue(isErrorDisplayed2, "Error message for email field is not displayed as expected.");
-        softAssert.assertAll();
+        SoftAssertions softAssertions = new SoftAssertions();
+        softAssertions.assertThat(isErrorDisplayed2).isTrue();
+        System.out.println("Error message for email field is not displayed as expected.");
+        softAssertions.assertAll();
     }
 
     @And("i should be able to enter my name and correct email")
@@ -96,19 +98,24 @@ public class NavigationToEconsentDef {
     @And("i should see clear text for disclosure")
     public void iShouldSeeClearTextForDisclosure() {
         boolean isDisclosureDisplayed = new NavigationToEconsentPage().isDisclosureDisplayed();
-        softAssert = new SoftAssert();
-        softAssert.assertTrue(isDisclosureDisplayed, "Disclosure is not displayed as expected.");
-        softAssert.assertAll();
+        SoftAssertions softAssertions = new SoftAssertions();
+        softAssertions.assertThat(isDisclosureDisplayed).isTrue();
+        System.out.println("Disclosure is not displayed as expected.");
+        softAssertions.assertAll();
+
 
     }
 
     @And("i should see {string} and {string} buttons")
     public void iShouldSeeAndButtons(String arg0, String arg1) {
         boolean isAgreeRadioDisplayed = new NavigationToEconsentPage().isAgreeRadioButtonDisplayed();
-        softAssert.assertTrue(isAgreeRadioDisplayed, "Agree radio button is not displayed as expected.");
+        SoftAssertions softAssertions = new SoftAssertions();
+        softAssertions.assertThat(isAgreeRadioDisplayed).isTrue();
+        System.out.println("Agree radio button is not displayed as expected.");
         boolean isDisagreeRadioDisplayed = new NavigationToEconsentPage().isDisagreeRadioButtonDisplayed();
-        softAssert.assertTrue(isDisagreeRadioDisplayed, "Disagree radio button is not displayed as expected.");
-        softAssert.assertAll();
+        softAssertions.assertThat(isDisagreeRadioDisplayed).isTrue();
+        System.out.println("Disagree radio button is not displayed as expected.");
+        softAssertions.assertAll();
     }
 
   /*  @And("{string} button should be selected by default")
@@ -128,14 +135,18 @@ public class NavigationToEconsentDef {
     @Then("user cant submit")
     public void userCantSubmit() {
         boolean isNextButtonUnabled = new NavigationToEconsentPage().isNextButtonUnabled();
-        softAssert.assertTrue(isNextButtonUnabled, "Next button is not disabled");
-        softAssert.assertAll();
+        SoftAssertions softAssertions = new SoftAssertions();
+        softAssertions.assertThat(isNextButtonUnabled).isTrue();
+        System.out.println("Next button is not disabled");
+        softAssertions.assertAll();
     }
 
     @And("error message should be displayed")
     public void errorMessageShouldBeDisplayed() {
         boolean isErrorDisplayed = new NavigationToEconsentPage().isErrorMessageDisplayed();
-        softAssert.assertTrue(isErrorDisplayed, "Error message is not displayed");
+        SoftAssertions softAssertions = new SoftAssertions();
+        softAssertions.assertThat(isErrorDisplayed).isTrue();
+        System.out.println("Error message is not displayed");
     }
 
 
@@ -165,8 +176,6 @@ public class NavigationToEconsentDef {
     public void userWillBeRedirectedToManePage() {
         new NavigationToEconsentPage().amIOnManePage();
     }
-
-
 
 }
 
