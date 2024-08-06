@@ -15,9 +15,12 @@ Feature: User Story 7.
     Then the page should contain the following fields
       | Employer Name |
       | Position      |
-      And dropdown menus
       | City          |
       | State         |
     And the page should contain date pickers for
       | Start Date |
       | End Date   |
+@bug7
+Scenario: The checkbox labeled "This is my current job should be unchecked by default
+  When the user is on the Employment and Income Page
+  Then the Current Job checkbox should be unchecked

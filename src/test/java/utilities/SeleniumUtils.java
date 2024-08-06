@@ -171,7 +171,7 @@ public class SeleniumUtils {
 
     public static void jsClick(WebElement webElement){
         JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
-        js.executeScript("arguments[0].click;", webElement);
+        js.executeScript("arguments[0].click();", webElement);
     }
 
     public  static void uploadFile(By chooseFileButton, String pathToAFileToBeUploaded){

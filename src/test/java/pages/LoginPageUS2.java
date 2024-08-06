@@ -7,11 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
 
 @Data
-public class LoginPageUS2 {
-
-    public LoginPageUS2(){
-        PageFactory.initElements(Driver.getDriver(), this);
-    }
+public class LoginPageUS2 extends BasePage {
 
     @FindBy(id = "exampleInputEmail1")
     private WebElement emailField;
