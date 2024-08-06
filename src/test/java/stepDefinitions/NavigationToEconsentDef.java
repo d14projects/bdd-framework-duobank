@@ -4,10 +4,10 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.assertj.core.api.SoftAssertions;
 import org.checkerframework.checker.units.qual.N;
 import org.junit.Assert;
 import org.openqa.selenium.Alert;
-import org.testng.asserts.SoftAssert;
 import pages.ApplicationPage;
 import pages.DashboardPage;
 import pages.NavigationToEconsentPage;
@@ -19,8 +19,6 @@ import java.util.Map;
 import static org.junit.Assert.assertTrue;
 
 public class NavigationToEconsentDef {
-    private SoftAssert softAssert;
-
 
     @Given("I am logging to the Duobank")
     public void i_am_logging_to_the_duobank() {
@@ -66,9 +64,10 @@ public class NavigationToEconsentDef {
     @Then("i should see an error message")
     public void iShouldSeeAnErrorMessage() {
         boolean isErrorDisplayed = new NavigationToEconsentPage().isErrorDisplayedForRequiredFields();
-        softAssert = new SoftAssert();
-        softAssert.assertTrue(isErrorDisplayed, "Error message for missing required fields is not displayed as expected.");
-        softAssert.assertAll();
+        SoftAssertions softAssertions = new SoftAssertions();
+        softAssertions.assertThat(isErrorDisplayed).isTrue();
+        System.out.println("Error message for missing required fields is not displayed as expected.");
+        softAssertions.assertAll();
     }
     @When("i enter invalid email{string}")
     public void iEnterInvalidEmail(String arg0) {
