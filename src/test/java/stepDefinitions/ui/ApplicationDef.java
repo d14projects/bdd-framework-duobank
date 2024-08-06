@@ -1,12 +1,9 @@
-package stepDefinitions;
+package stepDefinitions.ui;
 
-import com.github.javafaker.App;
-import io.cucumber.java.bs.A;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.Assert;
 import pages.ApplicationPage;
 import pages.DashboardPage;
 import utilities.ConfigReader;

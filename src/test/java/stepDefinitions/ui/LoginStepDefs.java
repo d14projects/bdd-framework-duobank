@@ -1,29 +1,19 @@
-package stepDefinitions;
+package stepDefinitions.ui;
 
 import com.github.javafaker.Faker;
 import io.cucumber.java.en.*;
-import net.sourceforge.tess4j.ITesseract;
-import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
 import org.junit.Assert;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.io.FileHandler;
 import pages.LoginPageUS2;
-import pages.SignUpPageUS1;
 import utilities.ConfigReader;
 import utilities.Driver;
 import utilities.SeleniumUtils;
 
-import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.NoSuchElementException;
 
 public class LoginStepDefs {
 
