@@ -192,7 +192,7 @@ public class ApplicationListStepDefs {
             expectedOrder2.clear();
             borrower.clear();
 
-            new ApplicationListPageUS11().getLoanIDSort().click();
+            new ApplicationListPageUS11().getBorrowerSort().click();
 
             for (WebElement e : new ApplicationListPageUS11().getRows()) {
                 String[] line = e.getText().split(" ");

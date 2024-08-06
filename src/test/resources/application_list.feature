@@ -1,4 +1,5 @@
-@REGRESSION @applications
+@REGRESSION
+#@applications
 Feature: User Story 11: Appllicaton List
   As a user,
   I want to see a list of all my submitted applications
@@ -64,7 +65,7 @@ Feature: User Story 11: Appllicaton List
     Then the user should see "View Details" button displayed and clicking should take to correct loan details page
 
 #    loan amount accepts non integer like letters
-#  @applications
+  @applications
   Scenario: The table should have sorting functionality for each column.
     Then the borrower should be able to sort the "LOAN ID" column in ascending and descending orders
     Then the borrower should be able to sort the "LOAN AMOUNT" column in ascending and descending orders
