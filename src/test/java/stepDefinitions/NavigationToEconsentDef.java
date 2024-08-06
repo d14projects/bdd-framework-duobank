@@ -20,8 +20,6 @@ import static org.junit.Assert.assertTrue;
 
 public class NavigationToEconsentDef {
 
-
-
     @Given("I am logging to the Duobank")
     public void i_am_logging_to_the_duobank() {
         Driver.getDriver().get(ConfigReader.getProperty("url"));

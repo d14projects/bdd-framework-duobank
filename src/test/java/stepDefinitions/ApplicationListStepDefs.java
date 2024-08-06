@@ -183,6 +183,7 @@ public class ApplicationListStepDefs {
                 String[] line = e.getText().split(" ");
                 borrower.add((line[1].toLowerCase()));
             }
+            System.out.println("Actual in Ascending Order : " + borrower);
             borrower.sort(Comparator.naturalOrder());
             List<String> expectedOrder2 = new ArrayList<>(borrower);
             System.out.println("Expected Sorting order: " + expectedOrder2);
@@ -192,14 +193,14 @@ public class ApplicationListStepDefs {
             expectedOrder2.clear();
             borrower.clear();
 
-            new ApplicationListPageUS11().getLoanIDSort().click();
+            new ApplicationListPageUS11().getBorrowerSort().click();
 
             for (WebElement e : new ApplicationListPageUS11().getRows()) {
                 String[] line = e.getText().split(" ");
                 borrower.add((line[1].toLowerCase()));
             }
 
-            System.out.println("Sorted in Descending Order BUG: " + borrower);
+            System.out.println("Actual in Descending Order BUG: " + borrower);
             borrower.sort(Comparator.reverseOrder());
             expectedOrder2 = new ArrayList<>(borrower);
             System.out.println("Expected Sorting order BUG: " + expectedOrder2);
