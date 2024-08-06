@@ -1,4 +1,4 @@
-package stepDefinitions.ui;
+package stepDefinitions.db;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
