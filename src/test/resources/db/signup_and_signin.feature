@@ -39,6 +39,12 @@ Feature: User Story 1: Appllicaton List
 #      | country_id  | ID of the country associated with the user                        |
 #      | active      | boolean indicating whether the user's account is currently active |
 
+#  @db_only
+  Scenario: The "tbl_users" table should not store duplicate email addresses.
+    Then "tbl_user" table should not contain duplicate "email" addresses
+
   @db_only
-  Scenario: The "tbl_users" table should not allow duplicate email addresses or to be stored.
-    Then "tbl_user" table should not duplicate "email".
+  Scenario: The "tbl_users" table should not allow duplicate email addresses.
+    When the user creates a new user record in "tbl_user" table with the already existing email address "jglob@gmail.com"
+    Then the db "tbl_user" table should not store the new user record
+

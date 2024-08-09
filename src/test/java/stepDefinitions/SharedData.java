@@ -9,4 +9,47 @@ public class SharedData {
 // Kenan your lines are from 53 to 73
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    private String emailDBUS1;
+    private String firstNameDBUS1;
 }
