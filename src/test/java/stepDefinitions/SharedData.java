@@ -54,4 +54,5 @@ public class SharedData {
     private String firstNameDBUS1;
     private String lastNameDBUS1;
     private String passwordDBUS1;
+    private Integer id_DBUS1;
 }
