@@ -52,4 +52,6 @@ public class SharedData {
 
     private String emailDBUS1;
     private String firstNameDBUS1;
+    private String lastNameDBUS1;
+    private String passwordDBUS1;
 }
