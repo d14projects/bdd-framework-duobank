@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 
 
 
-            tags = "@REGRESSION",
+            tags = "@data_mapping",
 
             features = "src/test/resources",
             glue = "stepDefinitions",
