@@ -6,6 +6,7 @@ import io.cucumber.java.en.When;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
+import pages.LoginPageUS2;
 import pages.SignUpPageUS1;
 import pages.SummaryPageUS10;
 import stepDefinitions.SharedData;
@@ -15,6 +16,7 @@ import utilities.SeleniumUtils;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -31,12 +33,12 @@ public class SignupAndSigninStepDefs {
     public void table_should_have_the_following_columns(String tableName, List<String> expectedColumnNames) {
 
         String query = String.format("SELECT * from %s", tableName);
-        System.out.println("Query: " + query);
+//        System.out.println("Query: " + query);
 
         List<String> actualColumnNames = DBUtils.getColumnNames(query);
-        System.out.println("Expected Column Names: " + expectedColumnNames);
-
-        System.out.println("Expected Column Names: "+ actualColumnNames);
+//        System.out.println("Expected Column Names: " + expectedColumnNames);
+//
+//        System.out.println("Expected Column Names: "+ actualColumnNames);
         Assert.assertEquals(expectedColumnNames, actualColumnNames);
     }
 
@@ -48,14 +50,14 @@ public class SignupAndSigninStepDefs {
                 key,
                 tableName);
 
-        System.out.println("Query: " + query);
+//        System.out.println("Query: " + query);
 
         List<Map<String, Object>> queryResult = DBUtils.getQueryResultListOfMaps(query);
-        System.out.println("Query Result: " + queryResult);
+//        System.out.println("Query Result: " + queryResult);
 
         List<String> duplicateString = SeleniumUtils.findDuplicateString(queryResult, key);
 
-        System.out.println("Duplicate emails: " + duplicateString);
+//        System.out.println("Duplicate emails: " + duplicateString);
 
         Assert.assertTrue(duplicateString.isEmpty());
     }
@@ -72,7 +74,7 @@ String.format("INSERT INTO %s (email, password, first_name, last_name, phone, im
                                      "VALUES ('%s', '2ac9cb7dc02b3c0083eb70898e549b63', '%s','Starling', '555-555-5555', 'assets/images/profile-pics/head_', '1', '%s', '', '0', '0', '0', '1')",
         tableName, sharedData.getEmailDBUS1(), sharedData.getFirstNameDBUS1(), LocalDateTime.now());
 
-        System.out.println("Query sent to db: " + query);
+//        System.out.println("Query sent to db: " + query);
 
         DBUtils.executeUpdate(query);
 
@@ -89,10 +91,8 @@ String.format("INSERT INTO %s (email, password, first_name, last_name, phone, im
 
         List<List<Object>> queryResult = DBUtils.getQueryResultAsListOfLists(query);
 
-        System.out.println("Query sent to db: " + query);
-
-        System.out.println("Actual Query Result: " + queryResult);
-
+//        System.out.println("Query sent to db: " + query);
+//        System.out.println("Actual Query Result: " + queryResult);
 
         softAssertions.assertThat(queryResult.isEmpty()).isTrue();
 
@@ -106,6 +106,12 @@ String.format("INSERT INTO %s (email, password, first_name, last_name, phone, im
         softAssertions.assertAll();
     }
 
+    @When("the user enters the new user credentials and clicks Sign In button")
+    public void the_user_enters_the_new_user_credentials_and_clicks_sign_in_button() {
+
+        new LoginPageUS2().login(sharedData.getEmailDBUS1(), sharedData.getPasswordDBUS1());
+
+    }
 
     @When("The user fills up the fields with valid info")
     public void the_user_fills_up_the_fields_with_valid_info() {
@@ -122,6 +128,7 @@ String.format("INSERT INTO %s (email, password, first_name, last_name, phone, im
                                        sharedData.getPasswordDBUS1()
                                       );
 
+        System.out.println("Email at sign up" + sharedData.getEmailDBUS1());
 //    SeleniumUtils.waitFor(2);
     }
 
@@ -129,7 +136,7 @@ String.format("INSERT INTO %s (email, password, first_name, last_name, phone, im
     public void the_user_should_be_able_to_sign_up_successfully() {
 
         new SignUpPageUS1().getRegisterButton().click();
-        SeleniumUtils.waitFor(2);
+        SeleniumUtils.waitFor(1);
         Assert.assertTrue(Driver.getDriver().getPageSource().contains("Registration Successful"));
         SeleniumUtils.waitFor(2);
 
@@ -145,10 +152,10 @@ String.format("INSERT INTO %s (email, password, first_name, last_name, phone, im
                 tableName,
                 sharedData.getEmailDBUS1());
 
-        System.out.println("Query for Read: " + query);
+//        System.out.println("Query for Read: " + query);
 
         List<Map<String, Object>> queryResult = DBUtils.getQueryResultListOfMaps(query);
-        System.out.println("Query Result for Read: " + queryResult);
+//        System.out.println("Query Result for Read: " + queryResult);
 
         Map<String, Object> map = queryResult.get(0);
 
@@ -173,12 +180,12 @@ String.format("INSERT INTO %s (email, password, first_name, last_name, phone, im
                 tableName,
                 sharedData.getEmailDBUS1());
 
-        System.out.println("Query for Mapping: " + query);
+//        System.out.println("Query for Mapping: " + query);
 
         List<Map<String, Object>> queryResult = DBUtils.getQueryResultListOfMaps(query);
-        System.out.println("Query Result for Mapping: " + queryResult);
+//        System.out.println("Query Result for Mapping: " + queryResult);
 
-        System.out.println("Expected Columns: " + expectedColumns);
+//        System.out.println("Expected Columns: " + expectedColumns);
 
         Map<String, Object> map = queryResult.get(0);
 
@@ -209,10 +216,10 @@ String.format("INSERT INTO %s (email, password, first_name, last_name, phone, im
                 tableName,
                 sharedData.getEmailDBUS1());
 
-        System.out.println("Query for Auto-generation: " + query);
+//        System.out.println("Query for Auto-generation: " + query);
 
         List<Map<String, Object>> queryResult = DBUtils.getQueryResultListOfMaps(query);
-        System.out.println("Query Result for ID Auto-Gen: " + queryResult);
+//        System.out.println("Query Result for ID Auto-Gen: " + queryResult);
 
         Assert.assertTrue(!queryResult.isEmpty());
 
@@ -223,22 +230,165 @@ String.format("INSERT INTO %s (email, password, first_name, last_name, phone, im
                 tableName,
                 sharedData.getId_DBUS1());
 
-        System.out.println("Query for ID: " + queryID);
+//        System.out.println("Query for ID: " + queryID);
 
         List<Map<String, Object>> queryResultID = DBUtils.getQueryResultListOfMaps(queryID);
-        System.out.println("Query Result for ID: " + queryResultID);
-        System.out.println("Size equal to: " +  queryResultID.size());
+
+//        System.out.println("Query Result for ID: " + queryResultID);
+//        System.out.println("Size equal to: " +  queryResultID.size());
 
         Assert.assertEquals(1, queryResultID.size());
 
+    }
+
+    @Then("{string} table should store a timestamp of when the user account was created in the {string} column")
+    public void table_should_store_a_timestamp_of_when_the_user_account_was_created(String tableName, String timeStampColumn) {
+
+        String query = String.format("SELECT %s from %s where id='%s'",
+                timeStampColumn,
+                tableName,
+                sharedData.getId_DBUS1());
+
+//        System.out.println("Query for timestamp: " + query);
+
+        List<Map<String, Object>> queryResult = DBUtils.getQueryResultListOfMaps(query);
+//        System.out.println("Query Result for Time Stamp: " + queryResult);
+
+        String expectedTimeStamp = LocalDateTime.parse(queryResult.get(0).get(timeStampColumn).toString(),
+                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+//        System.out.println("Expected Time Stamp: " + expectedTimeStamp);
+
+        String actualTimeStamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+//        System.out.println("Actual Time Stamp: " + actualTimeStamp);
+
+        Assert.assertEquals(expectedTimeStamp, actualTimeStamp);
+
+        Assert.assertTrue(!queryResult.isEmpty());
+    }
+
+    @Then("{string} table should store and encrypt user passwords in an MD5 hash in the {string} column")
+    public void table_should_store_and_encrypt_user_passwords_in_an_md5_hash(String tableName, String passwordColumn) throws SQLException {
+
+        String query = String.format("SELECT %s from %s where id='%s'",
+                passwordColumn,
+                tableName,
+                sharedData.getId_DBUS1());
+
+//        System.out.println("Query for password: " + query);
+
+        List<Map<String, Object>> queryResult = DBUtils.getQueryResultListOfMaps(query);
+//        System.out.println("Query Result for password: " + queryResult);
+
+        Map<String, Object> map = queryResult.get(0);
+
+        String expectedPasswordMD5 = DigestUtils.md5Hex(sharedData.getPasswordDBUS1());
+
+//        System.out.println("Actual Password: " + map.get(passwordColumn));
+//        System.out.println("Expected Password: " + expectedPasswordMD5);
+
+        Assert.assertEquals(expectedPasswordMD5, map.get(passwordColumn));
 
         //DELETE ENTRY FROM DATABASE
         if (!queryResult.isEmpty()) {
-            String queryDelete = String.format("DELETE from %s where email='%s' and first_name='%s'",
-                    tableName, sharedData.getEmailDBUS1(), sharedData.getFirstNameDBUS1());
+            String queryDelete = String.format("DELETE from %s where id='%s'",
+                    tableName, sharedData.getId_DBUS1());
+
+            DBUtils.executeUpdate(queryDelete);
+        }
+    }
+
+    @When("the user completed and submits Mortgage Application")
+    public void the_user_completed_and_submits_mortgage_application() {
+
+        new SummaryPageUS10().getMortgageApplicationLink().click();
+
+        Faker faker = new Faker();
+        sharedData.setZoneID(0);
+        sharedData.setType(2);
+        sharedData.setPhone("5555555555");
+        sharedData.setModifiedAt("");
+        sharedData.setImage("");
+        sharedData.setCreatedAt(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+        sharedData.setCountryID(0);
+        sharedData.setChurchID(0);
+        sharedData.setActive(1);
+
+        new SummaryPageUS10().fillOutTillEConsentPage("100000", "20000", "1000",
+                sharedData.getFirstNameDBUS1(), sharedData.getLastNameDBUS1(),sharedData.getEmailDBUS1(),
+                "01/01/1980", "234343456", sharedData.getPhone(), "2000", "Duotech",
+                "10/4/2017", "5000");
+
+        new SummaryPageUS10().getSubmitButton().click();
+        SeleniumUtils.waitFor(1);
+
+        System.out.println("Email at appplication " + sharedData.getEmailDBUS1());
+    }
+
+    @Then("{string} columns should correctly display corresponding user information:")
+    public void columns_should_correctly_display_corresponding_user_information(String tableName, List<String> expectedColumns) throws SQLException {
+
+        System.out.println(sharedData.getEmailDBUS1());
+
+        String query = String.format("SELECT * from %s where email='%s'",
+                tableName,
+                sharedData.getEmailDBUS1());
+
+        System.out.println("Query for User-INFO: " + query);
+
+        List<Map<String, Object>> queryResult = DBUtils.getQueryResultListOfMaps(query);
+        System.out.println("Query Result for USER-INFO: " + queryResult);
+
+        Map<String, Object> map = queryResult.get(0);
+
+        System.out.println("Map: " + map);
+
+        sharedData.setId_DBUS1( (Integer) map.get("id"));
+
+        System.out.println("Stored ID for User DELETION AFTER THE TEST " + sharedData.getId_DBUS1());
+
+        SoftAssertions softAssertions = new SoftAssertions();
+
+        String actualEmail = (String) map.get(expectedColumns.get(0));
+        String actualPassword = (String) map.get(expectedColumns.get(1));
+        String actualFirst_name = (String) map.get(expectedColumns.get(2));
+        String actualLast_name = (String) map.get(expectedColumns.get(3));
+        String actualPhone =(String) map.get(expectedColumns.get(4));
+        String actualImage = (String) map.get(expectedColumns.get(5));
+        Integer	actualType = (int) map.get(expectedColumns.get(6));
+        String actualCreated_at = LocalDateTime.parse(map.get(expectedColumns.get(7)).toString(),
+                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+
+        String	actualModified_at = (String) map.get(expectedColumns.get(8));
+        Integer actualZone_id = (int) map.get(expectedColumns.get(9));
+        Integer	actualChurch_id = (int) map.get(expectedColumns.get(10));
+        Integer	actualCountry_id = (int) map.get(expectedColumns.get(11));
+        Integer	actualActive = (int) map.get(expectedColumns.get(12));
+
+
+        softAssertions.assertThat(sharedData.getEmailDBUS1()).isEqualTo(actualEmail);
+        softAssertions.assertThat(DigestUtils.md5Hex(sharedData.getPasswordDBUS1())).isEqualTo(actualPassword);
+        softAssertions.assertThat(sharedData.getFirstNameDBUS1()).isEqualTo(actualFirst_name);
+        softAssertions.assertThat(sharedData.getLastNameDBUS1()).isEqualTo(actualLast_name);
+     //   softAssertions.assertThat(sharedData.getPhone()).isEqualTo(actualPhone);
+        softAssertions.assertThat(sharedData.getImage()).isEqualTo(actualImage);
+        softAssertions.assertThat(sharedData.getType()).isEqualTo(actualType);
+        softAssertions.assertThat(sharedData.getCreatedAt()).isEqualTo(actualCreated_at);
+        softAssertions.assertThat(sharedData.getModifiedAt()).isEqualTo(actualModified_at);
+        softAssertions.assertThat(sharedData.getZoneID()).isEqualTo(actualZone_id);
+        softAssertions.assertThat(sharedData.getChurchID()).isEqualTo(actualChurch_id);
+        softAssertions.assertThat(sharedData.getCountryID()).isEqualTo(actualCountry_id);
+        softAssertions.assertThat(sharedData.getActive()).isEqualTo(actualActive);
+
+        if (!queryResult.isEmpty()) {
+            String queryDelete = String.format("DELETE from %s where id='%s'",
+                    tableName, sharedData.getId_DBUS1());
 
             DBUtils.executeUpdate(queryDelete);
         }
 
+        softAssertions.assertAll();
+
     }
+
+
 }
