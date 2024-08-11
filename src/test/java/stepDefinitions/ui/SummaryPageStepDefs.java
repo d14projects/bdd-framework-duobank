@@ -17,7 +17,7 @@ public class SummaryPageStepDefs {
     @When("the user clicks on Mortgage Application link and fills out the form till e-Consent inclusive")
     public void the_user_clicks_on_mortgage_application_link_and_completes_till_ECONSENT_inclusive() {
         new SummaryPageUS10().getMortgageApplicationLink().click();
-        new SummaryPageUS10().fillOutTillSummaryPage();
+        new SummaryPageUS10().fillOutTillEConsentPage();
     }
 
     @Then("The Summary page should be displayed and contain edit buttons")

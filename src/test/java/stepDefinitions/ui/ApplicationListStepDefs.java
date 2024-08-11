@@ -205,13 +205,6 @@ public class ApplicationListStepDefs {
             expectedOrder2 = new ArrayList<>(borrower);
             System.out.println("Expected Sorting order BUG: " + expectedOrder2);
             Assert.assertEquals(expectedOrder2, borrower);
-
-
-
-
-
-
-
         }
 
         if (string.equals("LOAN AMOUNT")) { // HAS BUG ACCEPTS LETTERS TO INT BOX

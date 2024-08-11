@@ -54,4 +54,15 @@ public class SharedData {
     private String firstNameDBUS1;
     private String lastNameDBUS1;
     private String passwordDBUS1;
+    private Integer id_DBUS1;
+    private Integer zoneID;
+    private Integer type;
+    private String phone;
+    private String modifiedAt;
+    private String image;
+    private String createdAt;
+    private Integer countryID;
+    private Integer churchID;
+    private Integer active;
+
 }

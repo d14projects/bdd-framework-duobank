@@ -27,6 +27,12 @@ private String passwordValid = "Password1";
         signInButton.click();
     }
 
+    public void login(String email, String password){
+        emailField.sendKeys(email);
+        passwordField.sendKeys(password);
+        signInButton.click();
+    }
+
     @FindBy(xpath = "//div[@class='card-header pb-1']")
     private WebElement loginFailedError;
 
