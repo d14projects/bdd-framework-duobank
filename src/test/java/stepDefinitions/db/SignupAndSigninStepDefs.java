@@ -238,6 +238,7 @@ String.format("INSERT INTO %s (email, password, first_name, last_name, phone, im
 //        System.out.println("Size equal to: " +  queryResultID.size());
 
         Assert.assertEquals(1, queryResultID.size());
+        Assert.assertNotNull(sharedData.getId_DBUS1());
 
     }
 
