@@ -1,5 +1,5 @@
 @REGRESSION @login
-Feature: User Story 2: Duobank App Sign In
+Feature: UI User Story 2: Duobank App Sign In
   As a user,
   I want to be able to sign in to my mortgage account,
   so that I can access my account information and perform necessary actions.

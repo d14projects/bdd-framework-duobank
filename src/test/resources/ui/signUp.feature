@@ -1,5 +1,5 @@
 @REGRESSION @signup
-Feature: User Story 1: Duobank App Sign Up
+Feature: UI User Story 1: Duobank App Sign Up
   As a potential customer,
   I want to sign up for an account on the bank mortgage application
   so that I can start the process of applying for a mortgage.
