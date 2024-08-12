@@ -147,6 +147,8 @@ public class ApplicationDef {
     public void itShouldLeadMeToTheNextPage() {
        assertTrue(new ApplicationPage().isNextPageLoaded2());
     }
+
+
 }
 
 
