@@ -4,19 +4,22 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import lombok.Data;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.Alert;
 import pages.ApplicationPage;
 import pages.DashboardPage;
 import pages.NavigationToEconsentPage;
+import stepDefinitions.SharedData;
 import utilities.ConfigReader;
 import utilities.Driver;
 import java.util.Map;
 
 
 import static org.junit.Assert.assertTrue;
-
+@Data
 public class NavigationToEconsentDef {
+
 
     @Given("I am logging to the Duobank")
     public void i_am_logging_to_the_duobank() {
@@ -37,6 +40,7 @@ public class NavigationToEconsentDef {
    @And("info in Personal Info page is filled as following")
     public void infoInPersonalInfoPageIsFilled(Map<String, String > map) throws InterruptedException {
    new NavigationToEconsentPage().personalInfo(map);
+
     }
 
     @And("all info in expenses page is filled")
