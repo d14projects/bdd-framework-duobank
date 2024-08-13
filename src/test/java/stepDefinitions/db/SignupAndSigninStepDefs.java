@@ -361,14 +361,18 @@ String.format("INSERT INTO %s (email, password, first_name, last_name, phone, im
         String actualCreated_at = LocalDateTime.parse(map.get(expectedColumns.get(7)).toString(),
                 DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
                 .atZone(ZoneId.of("UTC"))
+                .withZoneSameInstant(ZoneId.of("UTC"))
                 .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
 
         // USe correct zone date time for remote servers
 
 //        String actualCreated_at = LocalDateTime.parse(map.get(expectedColumns.get(7)).toString(),
-//                        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
-//                .atZone(ZoneId.of("UTC")) // Convert to ZonedDateTime in UTC
-//                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+//        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
+//    .atZone(ZoneId.of("UTC")) // Convert to ZonedDateTime in UTC
+//    .withZoneSameInstant(ZoneId.of("UTC")) // Ensure output is in UTC
+//    // Handle DST if necessary
+//    .withHour(adjustedHour) // Adjust hour if needed
+//    .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
 
 
         String	actualModified_at = (String) map.get(expectedColumns.get(8));
