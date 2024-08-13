@@ -1,5 +1,5 @@
 
-
+@REGRESSION
 Feature:  As a mortgage loan applicant i want fill my personal information so it should be saved in the app and in the database
 
 @db

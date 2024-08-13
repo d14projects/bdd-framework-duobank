@@ -1,10 +1,11 @@
-name: Regression test Suite
-run-name: Running regression tests
+name: Nightly Regression Suite
+run-name: Running nightly regression tests
 
 on:
-  push:
-    branches:
-      - main
+  schedule:
+    - cron: 0 0 * * *  # regression suite at midnight daily
+#    - cron: 30 1 * * 6,0  # at Saturday,Sunday of every week at 1:30 am
+#    - cron: 0 * * * *  # for smoke suite once every hour
 
 jobs:
   regression-test:
@@ -33,11 +34,11 @@ jobs:
           chrome-version: 'stable'
 
       - name: Run Regression Tests
-        run: mvn test -Dcucumber.filter.tags="@REGRESSION" -Dbrowser=chrome-headless
+        run: mvn test -Dcucumber.filter.tags=@REGRESSION -Dbrowser=chrome-headless
 
       - name: Attach Test Results
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Test Result Report File
           path: target/cucumber-report/report.html

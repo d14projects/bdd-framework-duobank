@@ -1,4 +1,4 @@
-@REGRESSION @signup
+@REGRESSION @signup @SMOKE
 Feature: UI User Story 1: Duobank App Sign Up
   As a potential customer,
   I want to sign up for an account on the bank mortgage application

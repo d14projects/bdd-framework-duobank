@@ -1,5 +1,6 @@
 #Feature: As a mortgage loan applicant, i want to consent and sign disclosures related with application.
-  Feature:  As a mortgage loan applicant i want to reach Econsent page by filling previous pages.
+@REGRESSION
+Feature:  As a mortgage loan applicant i want to reach Econsent page by filling previous pages.
   Background:
     Given I am logging to the Duobank
     When i am clicking to the Mortgage Application

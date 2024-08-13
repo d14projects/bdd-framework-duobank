@@ -1,3 +1,4 @@
+@REGRESSION
 @UserStory7
 Feature: User Story 7.
   As a user applying for a mortgage loan, I want to provide my employment

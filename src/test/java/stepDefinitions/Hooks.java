@@ -1,6 +1,7 @@
 package stepDefinitions;
 
 import io.cucumber.java.*;
+import io.restassured.RestAssured;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.openqa.selenium.OutputType;
@@ -29,30 +30,38 @@ public class Hooks {
             CSVEraser.deleteFile(FrameworkConstants.INVALID_LOGIN_FILE);
     }
 
-    @Before ("@db_only")  //like before and after method in testng
+    @Before ("@db_only")
     public void setUpDB(){
         System.out.println("Before Hook for DB-only Scenarios");
         DBUtils.createConnection();
     }
 
-    @After ("@db_only")  //like before and after method in testng
+    @After ("@db_only")
     public void tearDownDB(){
         System.out.println("After Hook for DB-only Scenarios");
 
         DBUtils.close();
     }
 
-    @Before ("not @db_only")
+    @Before ("@API")
+    public void setUpAPI(){
+        System.out.println("Before Hook for API-only Scenarios");
+        RestAssured.baseURI = ConfigReader.getProperty("api.base.uri");
+    }
+
+
+    @Before ("not @db_only and not @API")
     public void setupScenario(){
-        System.out.println("Before Hook for non-DB-only Scenarios");
+        System.out.println("Before Hook for non-@db_only and non-@API Scenarios");
         Driver.getDriver().manage().window().maximize();
         Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         DBUtils.createConnection();
+        RestAssured.baseURI = ConfigReader.getProperty("api.base.uri");
     }
 
-    @After ("not @db_only")
+    @After ("not @db_only and not @API")
     public void tearDownScenario(Scenario scenario){
-        System.out.println("After Hook for non-DB-only Scenarios");
+        System.out.println("After Hook for non-@db_only and non-@API Scenarios");
         if (scenario.isFailed()){
             byte [] screenshotFile =  ( (TakesScreenshot) Driver.getDriver() ).getScreenshotAs(OutputType.BYTES);
             scenario.attach(screenshotFile, "image/png", "failed");

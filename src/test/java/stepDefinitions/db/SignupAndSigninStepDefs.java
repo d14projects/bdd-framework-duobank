@@ -327,31 +327,21 @@ String.format("INSERT INTO %s (email, password, first_name, last_name, phone, im
 
         new SummaryPageUS10().getSubmitButton().click();
         SeleniumUtils.waitFor(1);
-
-        System.out.println("Email at appplication " + sharedData.getEmailDBUS1());
     }
 
     @Then("{string} columns should correctly display corresponding user information:")
     public void columns_should_correctly_display_corresponding_user_information(String tableName, List<String> expectedColumns) throws SQLException {
 
-        System.out.println(sharedData.getEmailDBUS1());
-
         String query = String.format("SELECT * from %s where email='%s'",
                 tableName,
                 sharedData.getEmailDBUS1());
 
-        System.out.println("Query for User-INFO: " + query);
 
         List<Map<String, Object>> queryResult = DBUtils.getQueryResultListOfMaps(query);
-        System.out.println("Query Result for USER-INFO: " + queryResult);
 
         Map<String, Object> map = queryResult.get(0);
 
-        System.out.println("Map: " + map);
-
         sharedData.setId_DBUS1( (Integer) map.get("id"));
-
-        System.out.println("Stored ID for User DELETION AFTER THE TEST " + sharedData.getId_DBUS1());
 
         SoftAssertions softAssertions = new SoftAssertions();
 
@@ -374,6 +364,12 @@ String.format("INSERT INTO %s (email, password, first_name, last_name, phone, im
         Integer	actualCountry_id = (int) map.get(expectedColumns.get(11));
         Integer	actualActive = (int) map.get(expectedColumns.get(12));
 
+
+        System.out.println("Expected time: " + sharedData.getCreatedAt());
+        System.out.println("Actual time: " + actualCreated_at);
+
+        System.out.println(sharedData.getModifiedAt());
+        System.out.println(actualModified_at);
 
         softAssertions.assertThat(sharedData.getEmailDBUS1()).isEqualTo(actualEmail);
         softAssertions.assertThat(DigestUtils.md5Hex(sharedData.getPasswordDBUS1())).isEqualTo(actualPassword);

@@ -1,3 +1,4 @@
+@REGRESSION
 Feature:  Mortgage Application Dashboard
   As a user who has applied for a mortgage with the bank,
   I want to access the dashboard page of the bank's mortgage application system

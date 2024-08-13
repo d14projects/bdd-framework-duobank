@@ -1,5 +1,5 @@
 
-
+@REGRESSION
    Feature: Preapproval Details Page Functionality
    Background:
     Given I am logged to the Duobank

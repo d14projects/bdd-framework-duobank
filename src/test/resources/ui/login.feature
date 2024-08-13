@@ -1,4 +1,4 @@
-@REGRESSION @login
+@REGRESSION @login @SMOKE
 Feature: UI User Story 2: Duobank App Sign In
   As a user,
   I want to be able to sign in to my mortgage account,
