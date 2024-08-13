@@ -126,26 +126,26 @@ public class PersonalInfoPageDB {
         }
 
         public void enterCoBorrowerInformation(Map<String, String> coBorrowerInfo) {
-            sharedData.setFirstName(coBorrowerInfo.get("c_firstName"));
-            sharedData.setMiddleName(coBorrowerInfo.get("c_middleName"));
-            sharedData.setLastName(coBorrowerInfo.get("c_lastName"));
-            sharedData.setEmail(coBorrowerInfo.get("c_email"));
-            sharedData.setDob(coBorrowerInfo.get("c_dob"));
-            sharedData.setSsn(coBorrowerInfo.get("c_ssn"));
-            sharedData.setMarital(coBorrowerInfo.get("c_marital"));
-            sharedData.setCellPhone(coBorrowerInfo.get("c_cell"));
-            sharedData.setHomePhone(coBorrowerInfo.get("c_home"));
+            sharedData.setFirstName2(coBorrowerInfo.get("c_firstName"));
+            sharedData.setMiddleName2(coBorrowerInfo.get("c_middleName"));
+            sharedData.setLastName2(coBorrowerInfo.get("c_lastName"));
+            sharedData.setEmail2(coBorrowerInfo.get("c_email"));
+            sharedData.setDob2(coBorrowerInfo.get("c_dob"));
+            sharedData.setSsn2(coBorrowerInfo.get("c_ssn"));
+            sharedData.setMarital2(coBorrowerInfo.get("c_marital"));
+            sharedData.setCellPhone2(coBorrowerInfo.get("c_cell"));
+            sharedData.setHomePhone2(coBorrowerInfo.get("c_home"));
 
-            firstNameField2.sendKeys(sharedData.getFirstName());
-            middleNameField2.sendKeys(sharedData.getMiddleName());
-            lastNameField2.sendKeys(sharedData.getLastName());
-            emailField2.sendKeys(sharedData.getEmail());
-            dateOfBirth2.sendKeys(sharedData.getDob());
-            ssnField2.sendKeys(sharedData.getSsn());
+            firstNameField2.sendKeys(sharedData.getFirstName2());
+            middleNameField2.sendKeys(sharedData.getMiddleName2());
+            lastNameField2.sendKeys(sharedData.getLastName2());
+            emailField2.sendKeys(sharedData.getEmail2());
+            dateOfBirth2.sendKeys(sharedData.getDob2());
+            ssnField2.sendKeys(sharedData.getSsn2());
             maritalStatusOption2.click();
             singleOption2.click();
-            cellphoneField2.sendKeys(sharedData.getCellPhone());
-            homePhoneField2.sendKeys(sharedData.getHomePhone());
+            cellphoneField2.sendKeys(sharedData.getCellPhone2());
+            homePhoneField2.sendKeys(sharedData.getHomePhone2());
             nextButton.click();
         }
     }

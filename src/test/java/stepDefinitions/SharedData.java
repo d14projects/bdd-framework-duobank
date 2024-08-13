@@ -18,6 +18,17 @@ private String marital;
 private String cellPhone;
 private String homePhone;
 
+    private String firstName2;
+    private String middleName2;
+    private String lastName2;
+    private String email2;
+    private String dob2;
+    private String ssn2;
+    private String marital2;
+    private String cellPhone2;
+    private String homePhone2;
+
+
 
 
 
@@ -73,5 +84,6 @@ private String homePhone;
     private Integer countryID;
     private Integer churchID;
     private Integer active;
+
 
 }

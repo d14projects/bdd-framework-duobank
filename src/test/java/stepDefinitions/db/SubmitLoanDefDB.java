@@ -37,7 +37,7 @@ public class SubmitLoanDefDB {
         }
 
         DBUtils.createConnection();
-          // WHY IT DID NOT WORK //String query = String.format("select * from %s where b_email='%s'",tableName,  sharedData.getEmail());
+         // String query = String.format("select * from %s where b_email='%s'",tableName,  sharedData.getEmail());
             String query="SELECT  b_firstName, b_middleName, b_lastName, b_email, b_dob, b_ssn, b_marital, b_cell, b_home FROM tbl_mortagage where b_email='john.doe11@email.com'";
         System.out.println("Query: " + query);
         //String query="SELECT  * FROM tbl_mortagage where b_firstName='Johnn'";

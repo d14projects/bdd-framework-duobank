@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 
 
 
-            tags = "@REGRESSION",
+            tags = "@db",
 
 //            features = "src/test/resources",
         features = "src/test/resources/db/personal_information.feature",
