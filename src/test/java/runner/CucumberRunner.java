@@ -9,10 +9,9 @@ import org.junit.runner.RunWith;
 
 
 
-            tags = "@db",
+            tags = "@ui_to_db",
 
-//            features = "src/test/resources",
-        features = "src/test/resources/db/personal_information.feature",
+            features = "src/test/resources",
             glue = "stepDefinitions",
             plugin = {
             "pretty",

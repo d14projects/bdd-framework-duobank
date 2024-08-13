@@ -50,7 +50,7 @@ Feature: DB User Story 1: Appllicaton List
     And "tbl_user" table should store a timestamp of when the user account was created in the "created_at" column
     And "tbl_user" table should store and encrypt user passwords in an MD5 hash in the "password" column
 
-#  @ui_to_db
+  @ui_to_db
   Scenario: Verify "tbl_user" columns correctly display corresponding user information:
 #    Create a new user - UI
     Given the user navigates to the sign in page
