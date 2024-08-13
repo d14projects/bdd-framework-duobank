@@ -16,6 +16,7 @@ import utilities.SeleniumUtils;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -356,8 +357,10 @@ String.format("INSERT INTO %s (email, password, first_name, last_name, phone, im
         String actualPhone =(String) map.get(expectedColumns.get(4));
         String actualImage = (String) map.get(expectedColumns.get(5));
         Integer	actualType = (int) map.get(expectedColumns.get(6));
-        String actualCreated_at = LocalDateTime.parse(map.get(expectedColumns.get(7)).toString(),
+        String actualCreated_at = ZonedDateTime.parse(map.get(expectedColumns.get(7)).toString(),
                 DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+
+        // USe correct zone date time for remote servers.
 
         String	actualModified_at = (String) map.get(expectedColumns.get(8));
         Integer actualZone_id = (int) map.get(expectedColumns.get(9));

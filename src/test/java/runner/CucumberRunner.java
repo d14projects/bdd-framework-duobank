@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
 
             tags = "@REGRESSION",
 
-            //features = "src/test/resources",
+//            features = "src/test/resources",
         features = "src/test/resources/db/personal_information.feature",
             glue = "stepDefinitions",
             plugin = {
