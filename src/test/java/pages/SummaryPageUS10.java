@@ -138,7 +138,7 @@ public class SummaryPageUS10 extends BasePage {
     @FindBy(linkText = "Next")
     private WebElement nextButtonEConsent;
 
-    public void fillOutTillSummaryPage() {
+    public void fillOutTillEConsentPage() {
         preapprovalDetailsLink.click();
         realtorNoCheckbox.click();
         loanOfficerNoCheckbox.click();
@@ -181,6 +181,42 @@ public class SummaryPageUS10 extends BasePage {
         eConsentEmail.sendKeys(email);
         nextButtonEConsent.click();
         SeleniumUtils.waitFor(1);
+    }
+
+    public void fillOutTillEConsentPage(String price, String downPayment, String additionalFunds, String firstName,
+                                        String lastName, String email, String dob, String ssn, String cell, String mortgagePaymentAmount,
+                                        String employer, String emplStartDate, String monthlyIncome) {
+        preapprovalDetailsLink.click();
+        realtorNoCheckbox.click();
+        loanOfficerNoCheckbox.click();
+        new Select(dropdownPreapprovalPage).selectByVisibleText("Purchase a Home");
+        estimatedPurchasePriceField.sendKeys(price);
+        downPaymentField.sendKeys(downPayment);
+        addtFundsField.sendKeys(additionalFunds);
+        nextButtonPreapproval.click();
+        coBorrowerNoCheckbox.click();
+        firstNameField.sendKeys(firstName);
+        lastNameField.sendKeys(lastName);
+        emailField.sendKeys(email);
+        dobField.sendKeys(dob);
+        ssnField.sendKeys(ssn);
+        new Select(maritalStatusDropdown).selectByVisibleText("Single");
+        cellphoneField.sendKeys(cell);
+        privacyCheckbox.click();
+        nextButtonPersonal.click();
+        checkboxOwn.click();
+        mortgagePaymentField.sendKeys(mortgagePaymentAmount);
+        nextButtonExpenses.click();
+        employerNameField.sendKeys(employer);
+        startDate.sendKeys(emplStartDate);
+        grossMonthlyIncomeField.sendKeys(monthlyIncome);
+        nextButtonEmployment.click();
+        checkboxNoCreditReport.click();
+        nextButtonCredit.click();
+        eConsentFirstName.sendKeys(firstName);
+        eConsentLastName.sendKeys(lastName);
+        eConsentEmail.sendKeys(email);
+        nextButtonEConsent.click();
     }
 
     @FindBy(xpath = "//h6[@class='pb-50']")

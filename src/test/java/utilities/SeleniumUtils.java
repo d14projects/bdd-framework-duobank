@@ -242,5 +242,22 @@ public class SeleniumUtils {
         return copiedText;
     }
 
+    public static List<String> findDuplicateString(List<Map<String, Object>> listOfMaps, String key) {
 
+        Set<String> uniqueStrings = new HashSet<>();
+        List<String> duplicateStrings = new ArrayList<>();
+
+        for (Map<String, Object> map : listOfMaps) {
+            Object value = map.get(key);
+            if (value instanceof String) {
+                String targetWord = (String) value;
+                if (uniqueStrings.contains(targetWord)) {
+                    duplicateStrings.add(targetWord);
+                } else {
+                    uniqueStrings.add(targetWord);
+                }
+            }
+        }
+        return duplicateStrings;
+    }
 }

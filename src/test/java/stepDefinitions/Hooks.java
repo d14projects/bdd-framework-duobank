@@ -47,6 +47,7 @@ public class Hooks {
         System.out.println("Before Hook for non-DB-only Scenarios");
         Driver.getDriver().manage().window().maximize();
         Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        DBUtils.createConnection();
     }
 
     @After ("not @db_only")
@@ -58,5 +59,6 @@ public class Hooks {
         }
 
         Driver.quitDriver();
+        DBUtils.close();
     }
 }

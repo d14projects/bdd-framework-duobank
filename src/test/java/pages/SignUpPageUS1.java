@@ -39,6 +39,14 @@ public class SignUpPageUS1 extends BasePage {
         passwordField.sendKeys(new Faker().internet().password(8, 10, true, false, true));
     }
 
+    public void fillAllFields(String first, String last, String email, String password){
+        firstNameField.sendKeys(first);
+        lastNameField.sendKeys(last);
+        emailField.sendKeys(email);
+        passwordField.sendKeys(password);
+    }
+
+
 private String signInPageTitle = "Login - Duobank URLA (Uniform Residential Loan Application) Mortgage Application";
 private String signUpPageTitle = "Register - Create an Account";
 

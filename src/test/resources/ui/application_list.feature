@@ -1,6 +1,6 @@
 @REGRESSION
 #@applications
-Feature: User Story 11: Appllicaton List
+Feature: UI User Story 11: Appllicaton List
   As a user,
   I want to see a list of all my submitted applications
   so that I can keep track of my applications and their status.
