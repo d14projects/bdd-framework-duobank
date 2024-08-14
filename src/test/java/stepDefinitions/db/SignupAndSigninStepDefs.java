@@ -312,7 +312,7 @@ String.format("INSERT INTO %s (email, password, first_name, last_name, phone, im
         sharedData.setModifiedAt("");
         sharedData.setImage("");
 
-       String expectedCreated_az = LocalDateTime.now(ZoneId.of("UTC")).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+       String expectedCreated_az = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
 
         sharedData.setCreatedAt(expectedCreated_az);
 
