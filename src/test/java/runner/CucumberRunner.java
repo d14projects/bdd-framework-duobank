@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 
 @CucumberOptions(
 
-            tags = "@REGRESSION",
+            tags = "@ui_to_db",
 
             features = "src/test/resources",
             glue = "stepDefinitions",
