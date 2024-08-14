@@ -311,9 +311,10 @@ String.format("INSERT INTO %s (email, password, first_name, last_name, phone, im
         sharedData.setPhone("5555555555");
         sharedData.setModifiedAt("");
         sharedData.setImage("");
-        sharedData.setCreatedAt(LocalDateTime.now()
-                .atZone(ZoneId.of("UTC"))
-                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+
+       String expectedCreated_az = LocalDateTime.now(ZoneId.of("UTC")).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+
+        sharedData.setCreatedAt(expectedCreated_az);
 
         sharedData.setCountryID(0);
         sharedData.setChurchID(0);
@@ -353,7 +354,8 @@ String.format("INSERT INTO %s (email, password, first_name, last_name, phone, im
         Integer	actualType = (int) map.get(expectedColumns.get(6));
         String actualCreated_at = LocalDateTime.parse(map.get(expectedColumns.get(7)).toString(),
                 DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
-                .atZone(ZoneId.of("UTC"))
+                .atZone(ZoneId.systemDefault())
+                .withZoneSameInstant(ZoneId.of("UTC"))
                 .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
 
         String	actualModified_at = (String) map.get(expectedColumns.get(8));
