@@ -18,14 +18,13 @@ import java.util.Objects;
 public class User {
 
     private String id;
-    private String username;
-    private String firstName;
-    private String lastName;
+    private String first_name;
+    private String last_name;
     private String email;
-    private String password;
-    private String signUpDate;
-    private String createdAt;
-    private String profilePic;
+    private String created_at;
+    private String modified_at;
+    private String type;
+    private String active;
 
 
 }
