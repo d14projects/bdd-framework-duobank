@@ -1,11 +1,19 @@
 package stepDefinitions;
 
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import lombok.Data;
+
+import static io.restassured.RestAssured.given;
 
 @Data
 public class SharedData {
 
-// Yana your lines are from 9 to 39
+private RequestSpecification requestSpecification = given(); // initialize an empty requestSpec obj
+private Response response;
+private String JWToken;
+
+// Yana your lines are from 17 to 47
 private String firstName;
 private String middleName;
 private String lastName;
@@ -37,7 +45,7 @@ private String homePhone;
 
 
 
-// Zina your lines are from 40 to 70
+// Zina your lines are from 48 to 78
 
 
 
@@ -68,7 +76,7 @@ private String homePhone;
 
 
 
-// Kenan your lines are from 71 to 101
+// Kenan your lines are from 79 to 109
 private String emailDBUS1;
 private String firstNameDBUS1;
 private String lastNameDBUS1;
