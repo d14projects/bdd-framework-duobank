@@ -1,4 +1,4 @@
-@REGRESSION @summary
+@REGRESSION @summary @SMOKE
 Feature: UI User Story 10: Summary Page Functionality
   As a mortgage loan applicant,
   I want to be able to review and edit the details of my loan application on a summary page
