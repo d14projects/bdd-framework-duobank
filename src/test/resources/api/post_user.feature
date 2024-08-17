@@ -67,7 +67,7 @@ Feature: API US 3: POST /user API endpoint features
 
   Given the request is authenticated with a valid API key
   And the request "Content-type" header is set to "application/json"
-  And the request body is set to the payload, where "first_name" field "missing"
+  And the request body is set to the payload, where "first_name" field is "missing"
   When I send a "POST" request to the endpoint "/user"
   Then the response log should be displayed
   Then the response status code should be 422
@@ -75,7 +75,7 @@ Feature: API US 3: POST /user API endpoint features
 
   Given the request is authenticated with a valid API key
   And the request "Content-type" header is set to "application/json"
-  And the request body is set to the payload, where "first_name" field "empty"
+  And the request body is set to the payload, where "first_name" field is "empty"
   When I send a "POST" request to the endpoint "/user"
   Then the response log should be displayed
   Then the response status code should be 422
@@ -83,7 +83,7 @@ Feature: API US 3: POST /user API endpoint features
 
   Given the request is authenticated with a valid API key
   And the request "Content-type" header is set to "application/json"
-  And the request body is set to the payload, where "last_name" field "missing"
+  And the request body is set to the payload, where "last_name" field is "missing"
   When I send a "POST" request to the endpoint "/user"
   Then the response log should be displayed
   Then the response status code should be 422
@@ -91,7 +91,7 @@ Feature: API US 3: POST /user API endpoint features
 
   Given the request is authenticated with a valid API key
   And the request "Content-type" header is set to "application/json"
-  And the request body is set to the payload, where "last_name" field "empty"
+  And the request body is set to the payload, where "last_name" field is "empty"
   When I send a "POST" request to the endpoint "/user"
   Then the response log should be displayed
   Then the response status code should be 422
@@ -99,7 +99,7 @@ Feature: API US 3: POST /user API endpoint features
 
   Given the request is authenticated with a valid API key
   And the request "Content-type" header is set to "application/json"
-  And the request body is set to the payload, where "email" field "missing"
+  And the request body is set to the payload, where "email" field is "missing"
   When I send a "POST" request to the endpoint "/user"
   Then the response log should be displayed
   Then the response status code should be 422
@@ -107,7 +107,7 @@ Feature: API US 3: POST /user API endpoint features
 
   Given the request is authenticated with a valid API key
   And the request "Content-type" header is set to "application/json"
-  And the request body is set to the payload, where "email" field "empty"
+  And the request body is set to the payload, where "email" field is "empty"
   When I send a "POST" request to the endpoint "/user"
   Then the response log should be displayed
   Then the response status code should be 422
@@ -115,7 +115,7 @@ Feature: API US 3: POST /user API endpoint features
 
   Given the request is authenticated with a valid API key
   And the request "Content-type" header is set to "application/json"
-  And the request body is set to the payload, where "password" field "missing"
+  And the request body is set to the payload, where "password" field is "missing"
   When I send a "POST" request to the endpoint "/user"
   Then the response log should be displayed
   Then the response status code should be 422
