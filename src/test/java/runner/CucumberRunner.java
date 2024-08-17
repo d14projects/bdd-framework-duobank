@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 
 @CucumberOptions(
 
-            tags = "@REGRESSION",
+            tags = "@post_user",
 
             features = "src/test/resources",
             glue = "stepDefinitions",
@@ -18,7 +18,7 @@ import org.junit.runner.RunWith;
 
           , publish = true  // generates a web based report with link on the console
 
-      //  , stepNotifications = true
+//        , stepNotifications = true
 
 //          , dryRun = true   // dry runs the scenario for snippet generation
 
