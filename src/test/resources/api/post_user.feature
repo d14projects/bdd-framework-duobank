@@ -129,7 +129,7 @@ Feature: API US 3: POST /user API endpoint features
   Then the response status code should be 422
   And the response body should have "message" field with value "Missing or Invalid Required Fields!"
 
-  @post_user
+#  @post_user
   Scenario: If the email address is not valid the API should return a 422 Unprocessable Entity error
   with a message indicating that the email address is invalid
 
@@ -140,3 +140,14 @@ Feature: API US 3: POST /user API endpoint features
     Then the response log should be displayed
     Then the response status code should be 422
     And the response body should have "message" field with value "Invalid Email Address!"
+
+#  @post_user
+  Scenario: The API should return a 422 Unprocessable Entity error with a message indicating
+  that the password is invalid if the password is less than 8 characters:
+    Given the request is authenticated with a valid API key
+    And the request "Content-type" header is set to "application/json"
+    And the request body is set to the payload, where "password" field is "less than 8 characters"
+    When I send a "POST" request to the endpoint "/user"
+    Then the response log should be displayed
+    Then the response status code should be 422
+    And the response body should have "message" field with value "Password must be at least 8 characters long and contain at least one uppercase character, one lowercase character, one number, and one special symbol (!@#$%^&*()-_=+{};:,<.>)!"

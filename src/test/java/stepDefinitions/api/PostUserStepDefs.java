@@ -35,7 +35,7 @@ public class PostUserStepDefs {
         String firstName = faker.name().firstName();
         String lastName = faker.name().lastName();
         String email = faker.internet().emailAddress();
-        String password = faker.internet().password(12,  16, true, true, true);
+        String password = "Password1";
 
         switch (payloadField) {
             case "first_name" -> {
@@ -127,6 +127,16 @@ public class PostUserStepDefs {
                                     .last_name(lastName)
                                     .email(email)
                                     .password("")
+                                    .build()
+                    );
+                }
+                if (condition.equals("less than 8 characters")) {
+                    sharedData.getRequestSpecification().body(
+                            User.builder()
+                                    .first_name(firstName)
+                                    .last_name(lastName)
+                                    .email(email)
+                                    .password("Pass")
                                     .build()
                     );
                 }
