@@ -1,10 +1,23 @@
 package stepDefinitions.api;
 
+import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
+
 import com.github.javafaker.Faker;
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
+import io.cucumber.java.en.*;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import io.restassured.RestAssured;
+import io.restassured.common.mapper.TypeRef;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import org.junit.Assert;
 import pojo.User;
 import stepDefinitions.SharedData;
+import utilities.ConfigReader;
+
+import java.util.Map;
+import java.util.Set;
 
 public class PostUserStepDefs {
 
@@ -23,7 +36,7 @@ public class PostUserStepDefs {
                         faker.name().firstName(),
                         faker.name().lastName(),
                         faker.internet().emailAddress(),
-                        faker.internet().password(12,  16, true, true, true))
+                        "Password1!")
         );
     }
 

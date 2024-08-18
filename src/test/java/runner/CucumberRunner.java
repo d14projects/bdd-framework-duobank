@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 
 @CucumberOptions(
 
-            tags = "@REGRESSION",
+            tags = "@delete_user",
 
             features = "src/test/resources",
             glue = "stepDefinitions",
