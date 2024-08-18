@@ -1,6 +1,8 @@
 @REGRESSION @SMOKE
 @API
 Feature: API US 2: GET /user
+  As a user of the mortgage application,
+  I want to be able to retrieve a specific user's information by ID through an API endpoint.
 
 #  @Get_User
 Scenario: The API endpoint should be accessible through a GET request to the resource "/user"

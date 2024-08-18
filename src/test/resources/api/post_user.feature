@@ -1,8 +1,11 @@
 @REGRESSION @SMOKE
 @API
 Feature: API US 3: POST /user API endpoint features
+  As a mortgage application user,
+  I want to be able to create a new user account
+  so that I can apply for a mortgage and access my account information.
 
-#  @post_user
+  @post_user
   Scenario: API endpoint '/user' should be accessible by HTTP POST request.
     Given the request is authenticated with a valid API key
     And the request "Content-type" header is set to "application/json"

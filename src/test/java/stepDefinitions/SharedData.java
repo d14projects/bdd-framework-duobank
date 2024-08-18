@@ -91,6 +91,7 @@ private String createdAt;
 private Integer countryID;
 private Integer churchID;
 private Integer active;
+private Object fieldValue;
 
 
 
