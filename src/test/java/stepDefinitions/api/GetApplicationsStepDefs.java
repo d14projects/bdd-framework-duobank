@@ -1,20 +1,9 @@
 package stepDefinitions.api;
 
-import static io.restassured.RestAssured.*;
-import static org.hamcrest.Matchers.*;
-
-import com.github.javafaker.Faker;
 import io.cucumber.java.en.*;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
-import io.restassured.RestAssured;
-import io.restassured.common.mapper.TypeRef;
-import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
 import org.junit.Assert;
-import pojo.User;
 import stepDefinitions.SharedData;
-import utilities.ConfigReader;
 
 import java.util.*;
 
@@ -76,6 +65,7 @@ public class GetApplicationsStepDefs {
     @Then("list mortgage applications must be ordered by creation date: newest to oldest, or highest")
     public void list_mortgage_applications_must_be_ordered_by_creation_date_newest_to_oldest_or_largest_id_to_lowest() {
 
+
         List<String> list = sharedData.getResponse().jsonPath().getList("mortagage_applications.id");
 
         System.out.println(list);
@@ -87,6 +77,9 @@ public class GetApplicationsStepDefs {
         Assert.assertEquals(expectedOrder, list);
 
 
+//        ApplicationsResponse applicationsResponse = sharedData.getResponse().then().extract().as(ApplicationsResponse.class);
+//        List<Application> applications = applicationsResponse.getMortagage_applications();
+//        System.out.println(applications.get(0).getId());
 
     }
 

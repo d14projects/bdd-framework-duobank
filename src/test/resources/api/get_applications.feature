@@ -1,6 +1,6 @@
 @REGRESSION @SMOKE
 @API
-Feature: API US 7: GET /applications
+Feature: API US 8: GET /applications
   As a loan officer,
   I want to be able to retrieve a list of mortgage applications for a specific user,
   so that I can review their application status and history.
@@ -59,7 +59,7 @@ Feature: API US 7: GET /applications
       | b_middleName      |
       | total_loan_amount |
 
-#      @get_applications
+      @get_applications
   Scenario: The list of mortgage applications must be ordered by creation date (newest to oldest).
 
         Given the request specification is reset
@@ -68,5 +68,5 @@ Feature: API US 7: GET /applications
         And the JWT token is set in the header
         When I send a "GET" request to the endpoint "/applications"
         Then the response log should be displayed
-        Then the response status code should be 200
+        Then the response status code should be 1000
         Then list mortgage applications must be ordered by creation date: newest to oldest, or highest
