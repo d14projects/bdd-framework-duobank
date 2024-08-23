@@ -16,10 +16,7 @@ import pojo.User;
 import stepDefinitions.SharedData;
 import utilities.ConfigReader;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class GetApplicationsStepDefs {
 
@@ -54,7 +51,6 @@ public class GetApplicationsStepDefs {
     public void theIdFieldInAllApplicationsShouldNotBeNull() {
 
         List<String> list = sharedData.getResponse().jsonPath().getList("mortagage_applications.id");
-        System.out.println(list);
         Assert.assertTrue(!list.contains(null));
 
 
@@ -62,19 +58,35 @@ public class GetApplicationsStepDefs {
 //                body("playlists.id", not(hasItem( nullValue() ) ) ) ;
     }
 
-    @And("the owner field in all applications should be {string}")
-    public void theOwnerFieldInAllPlaylistsShouldBe(String expected) {
-        List<String> list = sharedData.getResponse().jsonPath().getList("playlists.owner");
+
+    @Then("the response should contain a list of all mortgage applications with the following fields")
+    public void the_response_should_contain_a_list_of_all_applications_with_the_following_fields(List<String> expectedFields) {
+
+        List<Map<String, Object>> list = sharedData.getResponse().jsonPath().getList("mortagage_applications");
+
+        System.out.println(list.size());
+
+        for (int i = 0; i < list.size(); i++) {
+            Map<String, Object> map = sharedData.getResponse().jsonPath().getMap("mortagage_applications[" + i + "]");
+
+            Assert.assertEquals(expectedFields, new ArrayList<>(map.keySet()));
+        }
+    }
+
+    @Then("list mortgage applications must be ordered by creation date: newest to oldest, or highest")
+    public void list_mortgage_applications_must_be_ordered_by_creation_date_newest_to_oldest_or_largest_id_to_lowest() {
+
+        List<String> list = sharedData.getResponse().jsonPath().getList("mortagage_applications.id");
+
         System.out.println(list);
 
-        list.forEach(e -> Assert.assertEquals(expected, e));
+        list.sort(Comparator.reverseOrder());
 
-        Set<String> uniqueSet
-                = new HashSet<>(list); // will remove all duplicates, and if the expected value is really unique, it's size should become 1
-        System.out.println(uniqueSet);
-        Assert.assertTrue(uniqueSet.size()==1 && uniqueSet.iterator().next().equals(expected));
+        List<String> expectedOrder = new ArrayList<>(list);
 
-        // you need to use iterator().next(), after uniqueSet to check equality of string expected and the ones in the actual list
+        Assert.assertEquals(expectedOrder, list);
+
+
 
     }
 
