@@ -5,7 +5,7 @@ Feature: DB User Story 1: Appllicaton List
   I want to be able to sign up and log in securely using a database system that protects my personal and financial information,
   so that I can complete the mortgage application process with confidence.
 
-  @db_only
+#  @db_only
   Scenario: Validate tbl_users table schema and data storage
     Then "tbl_user" table should have the following columns:
       | id          |
@@ -23,7 +23,7 @@ Feature: DB User Story 1: Appllicaton List
       | country_id  |
       | active      |
 
-#  @db_only
+  @db_only
   Scenario: The "tbl_users" table should not store duplicate email addresses.
     Then "tbl_user" table should not contain duplicate "email" addresses
 
