@@ -23,7 +23,7 @@ Feature: DB User Story 1: Appllicaton List
       | country_id  |
       | active      |
 
-#  @db_only
+  @db_only
   Scenario: The "tbl_users" table should not store duplicate email addresses.
     Then "tbl_user" table should not contain duplicate "email" addresses
 

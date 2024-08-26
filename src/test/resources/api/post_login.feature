@@ -108,7 +108,7 @@ Feature: API US 7: POST /login
 #    it does not matter you send incorrect email or password, the status code returns 200, 422 is returned in the payload,
 #    and message is always Invalid Email Address
 
-  @post_login
+#  @post_login
   Scenario: The API response payload should be in the format:
   {
   "success": true,
