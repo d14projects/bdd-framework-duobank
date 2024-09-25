@@ -55,7 +55,7 @@ public class Hooks {
         System.out.println("Before Hook for non-@db_only and non-@API Scenarios");
         Driver.getDriver().manage().window().maximize();
         Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        DBUtils.createConnection();
+     //   DBUtils.createConnection();
         RestAssured.baseURI = ConfigReader.getProperty("api.base.uri");
     }
 
@@ -68,6 +68,6 @@ public class Hooks {
         }
 
         Driver.quitDriver();
-        DBUtils.close();
+    //    DBUtils.close();
     }
 }

@@ -39,7 +39,7 @@ Feature: API US 7: POST /login
     Then the response status code should be 401
     And the response body should have "message" field with value "Invalid or missing API Key. Provide a valid api key with 'api_key' query parameter."
 
-#  @post_login
+  @post_login
   Scenario: The request must contain a JSON payload with the user's email and password..
     Given the request is authenticated with a valid API key
     And the request "Content-type" header is set to "application/json"

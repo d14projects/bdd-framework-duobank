@@ -5,7 +5,7 @@ Feature: API US 4: PUT /user
   I want to be able to update my personal information through an API endpoint,
   so that my information is accurate and up-to-date.
 
-#  @put_user
+  @put_user
   Scenario: The API endpoint should be accessible through a PUT request to the resource "/user".
     Given the request is authenticated with a valid API key
     And the request "Content-type" header is set to "application/json"
