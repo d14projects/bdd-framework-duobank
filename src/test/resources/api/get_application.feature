@@ -34,4 +34,4 @@ Feature: API US 9: GET /application
     Then the response status code should be 200
     And the response "Content-Type" header should be "application/json; charset=UTF-8"
     And the response time should be less than 2000 ms
-#    Then list mortgage application must be must contain all required fields
+    Then list mortgage application must be must contain all required fields
