@@ -3,7 +3,7 @@ run-name: Running nightly regression tests
 
 on:
   schedule:
-    - cron: 0 0 * * *  # regression suite at midnight daily
+#    - cron: 0 0 * * *  # regression suite at midnight daily
 #    - cron: 30 1 * * 6,0  # at Saturday,Sunday of every week at 1:30 am
 #    - cron: 0 * * * *  # for smoke suite once every hour
 

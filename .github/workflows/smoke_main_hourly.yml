@@ -3,7 +3,7 @@ run-name: Running hourly smoke test
 
 on:
   schedule:
-    - cron: 0 * * * *  # for smoke suite once every hour
+#    - cron: 0 * * * *  # for smoke suite once every hour
 
 
 jobs:
